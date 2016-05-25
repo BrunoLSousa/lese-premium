@@ -9,6 +9,11 @@ import br.game.reuse.lesepremium.model.Teacher;
 import br.game.reuse.lesepremium.model.dao.TeacherDAO;
 import br.game.reuse.lesepremium.presenters.consolepresenters.ConsoleTeacherPresenter;
 import br.game.reuse.lesepremium.presenters.interfaces.TeacherPresenter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,10 +22,10 @@ import br.game.reuse.lesepremium.presenters.interfaces.TeacherPresenter;
 public class TeacherBoard {
 
     private static TeacherBoard instance = null;
-    private Teacher teacher = null;
+    private Teacher teacher;
 
     private TeacherBoard() {
-        instance = new TeacherBoard();
+        this.teacher = null;
     }
 
     public static TeacherBoard getInstance() {
@@ -35,13 +40,47 @@ public class TeacherBoard {
     }
 
     public boolean autenticate() {
-        TeacherPresenter teacherPresenter = new ConsoleTeacherPresenter();
-        String[] data = teacherPresenter.getAutentication();
-        this.teacher = TeacherDAO.authentication(data);
-        return (this.teacher != null);
+        try {
+            TeacherPresenter teacherPresenter = new ConsoleTeacherPresenter();
+            String[] data = teacherPresenter.getAutentication();
+            boolean validation = TeacherDAO.validateEmail(data[0]);
+            if (validation) {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                BigInteger hash = new BigInteger(1, md.digest(data[1].getBytes()));
+                data[1] = String.format("%32X", hash);
+                this.teacher = TeacherDAO.authentication(data);
+            }
+            teacherPresenter.showFeedbackAutentication(validation);
+            return (this.teacher != null);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(TeacherBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     public void logout() {
         this.teacher = null;
+    }
+
+    public void changePassword() {
+        try {
+            TeacherPresenter teacherPresenter = new ConsoleTeacherPresenter();
+            String[] data = teacherPresenter.getNewPassword();
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            BigInteger hash = new BigInteger(1, md.digest(data[0].getBytes()));
+            data[0] = String.format("%32X", hash);
+            Teacher t = TeacherDAO.validatePassword(this.teacher.getEmail(), data[0]);
+            int confirm = 0;
+            if (t != null) {
+                if (data[1].equals(data[2])) {
+                    hash = new BigInteger(1, md.digest(data[1].getBytes()));
+                    String newPassword= String.format("%32X", hash);
+                    confirm = TeacherDAO.changePassword(t.getCpf(), newPassword);
+                }
+            }
+            teacherPresenter.showFeedbackChangePassword((t!=null), data, confirm);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(TeacherBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
