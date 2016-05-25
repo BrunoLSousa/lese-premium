@@ -96,13 +96,14 @@ public class ConsoleGamePresenter implements GamePresenter {
 
     @Override
     public int menuTeacher() {
-        System.out.println("\nÁrea Restrita\n\n");
+        System.out.println("\n\nÁrea Restrita");
         System.out.println("\nMenu do Professor:");
         System.out.println("1 - Cadastrar Questões");
         System.out.println("2 - Alterar Questões");
         System.out.println("3 - Cadastrar Coringas");
         System.out.println("4 - Alterar Coringas");
-        System.out.println("5 - Sair da área restrita\n");
+        System.out.println("5 - Alterar Senha");
+        System.out.println("6 - Sair da área restrita\n");
         System.out.print("Escolha a opção: ");
         Scanner entrada = new Scanner(System.in);
         return entrada.nextInt();
@@ -110,7 +111,7 @@ public class ConsoleGamePresenter implements GamePresenter {
 
     @Override
     public void showExitRestrictedArea() {
-        System.out.println("Usuário deslogado com sucesso!!!");
+        System.out.println("Autenticação encerrada com sucesso!!!");
     }
 
 }
