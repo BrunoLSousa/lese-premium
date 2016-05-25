@@ -96,8 +96,11 @@ public class BoardGame {
                 case 4:
                     break;
                 case 5:
+                    this.teacherBoard.changePassword();
+                    break;
+                case 6:
                     this.teacherBoard.logout();
-                    gamePresenter.showExit();
+                    gamePresenter.showExitRestrictedArea();
                     break;
                 default:
                     gamePresenter.showDefault();
@@ -125,6 +128,7 @@ public class BoardGame {
                     boardPresenter.showWinner(player);
                     break;
                 } else if (!continueGame) {
+                    this.board.destroyPlayers();
                     boardPresenter.finalizeGame();
                 }
             }
