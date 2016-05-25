@@ -17,4 +17,23 @@ public interface TeacherPresenter {
      */
     String[] getAutentication();
     
+    /**
+     *
+     * @param validation
+     */
+    void showFeedbackAutentication(boolean validation);
+    
+    /**
+     *
+     * @return
+     */
+    String[] getNewPassword();
+    
+    /**
+     *
+     * @param validationPassword
+     * @param confirm
+     * @param data
+     */
+    void showFeedbackChangePassword(boolean validationPassword, String[] data, int confirm);
 }
