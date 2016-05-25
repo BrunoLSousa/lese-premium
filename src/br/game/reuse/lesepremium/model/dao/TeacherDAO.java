@@ -47,7 +47,7 @@ public class TeacherDAO {
         PreparedStatement ps = null;
         try {
             connection = DBConnection.getConnection();
-            ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.cpf=? AND t.password=? AND u.id_user=t.user");
+            ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND t.password=? AND u.id_user=t.user");
             ps.setString(1, data[0]);
             ps.setString(2, data[1]);
             ResultSet rs = ps.executeQuery();
@@ -69,6 +69,82 @@ public class TeacherDAO {
             DBConnection.closeConnection(connection, ps);
         }
         return null;
+    }
+    
+    public static boolean validateEmail(String email){
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND u.id_user=t.user");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Teacher teacher = new Teacher();
+                teacher.setCpf(rs.getString("cpf"));
+                teacher.setEmail(rs.getString("email"));
+                teacher.setIdUser(rs.getInt("user"));
+                teacher.setInstitution(rs.getString("institution"));
+                teacher.setName(rs.getString("name"));
+                teacher.setPassword(rs.getString("password"));
+                return teacher != null;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return false;
+    }
+    
+    public static Teacher validatePassword(String email, String password){
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND t.password=? AND u.id_user=t.user");
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                Teacher teacher = new Teacher();
+                teacher.setCpf(rs.getString("cpf"));
+                teacher.setEmail(rs.getString("email"));
+                teacher.setIdUser(rs.getInt("user"));
+                teacher.setInstitution(rs.getString("institution"));
+                teacher.setName(rs.getString("name"));
+                teacher.setPassword(rs.getString("password"));
+                return teacher;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return null;
+    }
+    
+    public static int changePassword(String cpf, String password){
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("UPDATE teacher SET password=? WHERE cpf=?");
+            ps.setString(1, password);
+            ps.setString(2, cpf);
+            return ps.executeUpdate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return 0;
     }
     
 }
