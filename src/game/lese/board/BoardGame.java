@@ -122,8 +122,7 @@ public class BoardGame {
         boolean continueGame = true;
 
         while (winner == null && continueGame) {
-            for (int i = 1; i <= this.board.getPlayers().size(); i++) {
-                PlayerBoard player = this.board.getPlayer("p" + i);
+            for (PlayerBoard player : this.board.getPlayers()) {
                 House playerHouse = this.board.getPlayerHouse(player);
                 playerHouse.execute(player);
                 continueGame = gamePresenter.continueGame();

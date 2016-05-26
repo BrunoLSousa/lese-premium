@@ -53,8 +53,8 @@ public class ConsoleBoardPresenter implements BoardPresenter {
         gamePresenter.cleanConsole();
         Board board = Board.getInstance();
         System.out.println("--------------------------------Informações----------------------------------\n");
-        for (int i = 0; i < board.getPlayers().size(); i++) {
-            PlayerBoard p = board.getPlayer("p" + (i + 1));
+        
+        for (PlayerBoard p : board.getPlayers()) {
             String line = "Jogador: " + p.getNickname() + " | Pontuação: " + p.getCurrentScore() + " | Ciclo: " + p.getCurrentCycle() + " | Casa: " + (p.getCurrentPos() + 1);
             System.out.println(line);
         }

@@ -12,6 +12,7 @@ import game.lese.model.dao.TeacherDAO;
 import game.lese.question.ProjectBoard;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 /**
@@ -21,18 +22,13 @@ import java.util.Map.Entry;
 public class Board {
 
     private static Board instance;
-    private ArrayList<House> houses;
-    
-    //TODO(MM) - change this map and everything that uses it
-    //There doesn't seem to be a reason to use a Map of PlayerBoard->PlayerBoard
-    //Maybe we can use a Map of PlayerName(string) -> PlayerBoard or a simple
-    //ist of PlayerBoard instead?
-    private HashMap<String, PlayerBoard> players;
+    private List<House> houses;
+    private List<PlayerBoard> players;
     private ProjectBoard project;
 
     private Board() {
         this.houses = new ArrayList<>();
-        this.players = new HashMap<>();
+        this.players = new ArrayList<>();
     }
 
     public static Board getInstance() {
@@ -55,20 +51,11 @@ public class Board {
     }
 
     public void addPlayer(String nickname, String pawnColor, String idPlayer) {
-        PlayerBoard newPlayer = new PlayerBoard(nickname);
-        this.players.put(idPlayer, newPlayer);
+        this.players.add(new PlayerBoard(nickname));
     }
 
-    public ArrayList<String> getPlayers() {
-        ArrayList<String> playersArray = new ArrayList<>();
-        for (Entry<String, PlayerBoard> item : this.players.entrySet()) {
-            playersArray.add(item.getKey());
-        }
-        return playersArray;
-    }
-
-    public PlayerBoard getPlayer(String id) {
-        return this.players.get(id);
+    public List<PlayerBoard> getPlayers() {
+        return this.players;
     }
 
     private int getPlayerHouseId(PlayerBoard p) {
@@ -80,16 +67,14 @@ public class Board {
     }
 
     public void storePlayers() {
-        for (Entry<String, PlayerBoard> item : this.players.entrySet()) {
-            PlayerBoard player = item.getValue();
-            new PlayerDAO().createPlayer(player);
+        for (PlayerBoard p : this.players) {
+            new PlayerDAO().createPlayer(p);
         }
     }
 
     public boolean hasWinner() {
         int finalHouseId = this.houses.size() - 1;
-        for (String p : getPlayers()) {
-            PlayerBoard player = this.players.get(p);
+        for (PlayerBoard player : this.players) {
             if (getPlayerHouseId(player) == finalHouseId) {
                 return true;
             }
@@ -100,10 +85,9 @@ public class Board {
     public String getWinner() {
         if (hasWinner()) {
             int finalHouseId = this.houses.size() - 1;
-            for (String p : getPlayers()) {
-                PlayerBoard player = this.players.get(p);
+            for (PlayerBoard player : this.players) {
                 if (getPlayerHouseId(player) == finalHouseId) {
-                    return p;
+                    return player.getNickname();
                 }
             }
         }
