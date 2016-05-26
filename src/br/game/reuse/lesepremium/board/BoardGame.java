@@ -25,8 +25,11 @@ public class BoardGame {
 
     private Board board;
     private TeacherBoard teacherBoard;
+    private BoardPresenter boardPresenter;
+    private GamePresenter gamePresenter;
+    private PlayerPresenter playerPresenter;
 
-    public void creatBoard(BoardBuilder builder) {
+    public void createBoard(BoardBuilder builder) {
 
         builder.buildBoard();
         builder.buildProject();
@@ -35,22 +38,20 @@ public class BoardGame {
     }
 
     public void setUpGame() {
-        PlayerPresenter playerPresenter = new ConsolePlayerPresenter();
-        BoardPresenter boardPresenter = new ConsoleBoardPresenter();
         int amountPlayers = boardPresenter.getNumPlayers();
         for (int i = 1; i <= amountPlayers; i++) {
             String playerName = playerPresenter.getPlayerName(i);
             String idPlayer = "p" + i;
             this.board.addPlayer(playerName, "red", idPlayer);
         }
-        GamePresenter gamePresenter = new ConsoleGamePresenter();
         gamePresenter.cleanConsole();
     }
 
     public void init() {
-        creatBoard(new BoardBuilder());
+        createBoard(new BoardBuilder());
         this.board = Board.getInstance();
-        GamePresenter gamePresenter = new ConsoleGamePresenter();
+        initPresenters();
+        
         gamePresenter.welcome();
         int opcao = 0;
         do {
@@ -83,7 +84,6 @@ public class BoardGame {
     }
 
     public void menuTeacher() {
-        GamePresenter gamePresenter = new ConsoleGamePresenter();
         Management management = null;
         int opcao = 0;
         do {
@@ -119,7 +119,6 @@ public class BoardGame {
 
     public void run() {
         String winner = null;
-        BoardPresenter boardPresenter = new ConsoleBoardPresenter();
         boolean continueGame = true;
 
         while (winner == null && continueGame) {
@@ -127,7 +126,6 @@ public class BoardGame {
                 PlayerBoard player = this.board.getPlayer("p" + i);
                 House playerHouse = this.board.getPlayerHouse(player);
                 playerHouse.execute(player);
-                GamePresenter gamePresenter = new ConsoleGamePresenter();
                 continueGame = gamePresenter.continueGame();
 
                 if (this.board.hasWinner()) {
@@ -142,5 +140,11 @@ public class BoardGame {
             }
         }
 
+    }
+    
+    protected void initPresenters() {
+        boardPresenter = new ConsoleBoardPresenter();
+        gamePresenter = new ConsoleGamePresenter();
+        playerPresenter = new ConsolePlayerPresenter();
     }
 }
