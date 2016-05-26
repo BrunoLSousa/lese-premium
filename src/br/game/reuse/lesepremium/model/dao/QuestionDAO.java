@@ -35,7 +35,12 @@ public class QuestionDAO {
             ps.setString(3, question.getExplanation());
             ps.setInt(4, question.getScore());
             ps.setInt(5, question.getHouse());
-            return ps.executeUpdate();
+            ps.executeUpdate();
+            ps = connection.prepareStatement("SELECT MAX(id_question) FROM question");
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            int idQuestion = rs.getInt(1);
+            return idQuestion;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -46,7 +51,7 @@ public class QuestionDAO {
         return 0;
     }
     
-    public List<Question> selectQuestionPerPhase(Phase phase){
+    public static List<Question> selectQuestionPerPhase(Phase phase){
         Connection connection = null;
         PreparedStatement ps = null;
         List<Question> listQuestions = new ArrayList<>();

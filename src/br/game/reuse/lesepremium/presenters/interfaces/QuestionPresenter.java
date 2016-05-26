@@ -7,6 +7,8 @@ package br.game.reuse.lesepremium.presenters.interfaces;
 
 import br.game.reuse.lesepremium.board.PlayerBoard;
 import br.game.reuse.lesepremium.house.House;
+import br.game.reuse.lesepremium.model.Phase;
+import br.game.reuse.lesepremium.model.Question;
 import br.game.reuse.lesepremium.question.QuestionBoard;
 import java.util.List;
 
@@ -33,10 +35,16 @@ public interface QuestionPresenter {
     
     /**
      * Obtains answer from the player
-     * @param question
+     * @param choices
      * @return player answer
      */
     String getPlayerAnswer(List<String> choices);
+    
+    /**
+     * Obtains new question
+     * @return 
+     */
+    Question getNewQuestion();
     
     /**
      * Gives feedback to the user based on their answer.
@@ -46,8 +54,14 @@ public interface QuestionPresenter {
     void showFeedback(House house, PlayerBoard p);
     
     /**
-     * Gives warning to the user based on their answer.
+     * Gives message to the user based on their answer.
      * @param feedback 
      */
-    void showWarning(String feedback);
+    void showMessage(String feedback);
+    
+    /**
+     * Return confirmation's register question 
+     * @return  
+     */
+    boolean confirmResgisterQuestion();
 }

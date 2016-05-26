@@ -27,7 +27,7 @@ public class AnswerDAO {
         PreparedStatement ps = null;
         try {
             connection = DBConnection.getConnection();
-            ps = connection.prepareStatement("INSERT INTO aswer(question, description, status) VALUES(?, ?, ?)");
+            ps = connection.prepareStatement("INSERT INTO answer(question, description, status) VALUES(?, ?, ?)");
             ps.setInt(1, answer.getQuestion().getIdQueston());
             ps.setString(2, answer.getDescription());
             ps.setString(3, answer.getStatus());

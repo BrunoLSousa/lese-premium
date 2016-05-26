@@ -14,7 +14,7 @@ public class Answer {
     private int idAnswer = 0;
     private Question question = null;
     private String description = "";
-    private String status = "";
+    private String status = "0";
 
     public Answer() {
         //constructor empty.

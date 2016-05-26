@@ -6,15 +6,16 @@
 package br.game.reuse.lesepremium.board;
 
 import br.game.reuse.lesepremium.house.House;
+import br.game.reuse.lesepremium.management.Management;
+import br.game.reuse.lesepremium.management.ManagementJoker;
+import br.game.reuse.lesepremium.management.ManagementQuestion;
 import br.game.reuse.lesepremium.management.TeacherBoard;
 import br.game.reuse.lesepremium.presenters.consolepresenters.ConsoleBoardPresenter;
 import br.game.reuse.lesepremium.presenters.consolepresenters.ConsoleGamePresenter;
 import br.game.reuse.lesepremium.presenters.consolepresenters.ConsolePlayerPresenter;
-import br.game.reuse.lesepremium.presenters.consolepresenters.ConsoleTeacherPresenter;
 import br.game.reuse.lesepremium.presenters.interfaces.BoardPresenter;
 import br.game.reuse.lesepremium.presenters.interfaces.GamePresenter;
 import br.game.reuse.lesepremium.presenters.interfaces.PlayerPresenter;
-import br.game.reuse.lesepremium.presenters.interfaces.TeacherPresenter;
 
 /**
  *
@@ -83,17 +84,24 @@ public class BoardGame {
 
     public void menuTeacher() {
         GamePresenter gamePresenter = new ConsoleGamePresenter();
+        Management management = null;
         int opcao = 0;
         do {
             opcao = gamePresenter.menuTeacher();
             switch (opcao) {
                 case 1:
+                    management = new ManagementQuestion();
+                    management.create();
                     break;
                 case 2:
+                    //Alter question. 
                     break;
                 case 3:
+                    management = new ManagementJoker();
+                    management.create();
                     break;
                 case 4:
+                    //Alter joker. 
                     break;
                 case 5:
                     this.teacherBoard.changePassword();

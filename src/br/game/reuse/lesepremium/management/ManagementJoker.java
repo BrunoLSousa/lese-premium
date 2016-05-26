@@ -5,6 +5,11 @@
  */
 package br.game.reuse.lesepremium.management;
 
+import br.game.reuse.lesepremium.model.Joker;
+import br.game.reuse.lesepremium.model.dao.JokerDAO;
+import br.game.reuse.lesepremium.presenters.consolepresenters.ConsoleJokerPresenter;
+import br.game.reuse.lesepremium.presenters.interfaces.JokerPresenter;
+
 /**
  *
  * @author bruno
@@ -13,7 +18,12 @@ public class ManagementJoker implements Management{
 
     @Override
     public void create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JokerPresenter jokerPresenter = new ConsoleJokerPresenter();
+        Joker joker = jokerPresenter.getNewJoker();
+        if (jokerPresenter.confirmResgisterJoker()) {
+            JokerDAO.createJoker(joker);
+            jokerPresenter.showMessage("Coringa cadastrado com sucesso!!!");
+        }
     }
 
     @Override

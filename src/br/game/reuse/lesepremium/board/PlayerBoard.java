@@ -53,12 +53,12 @@ public class PlayerBoard {
             this.currentPos = finalHouseCycle;
             QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
             String feedback = "Você não consegue avançar as " + nHouses + " casas. Por isso, vá para casa " + finalHouseCycle;
-            questionPresenter.showWarning(feedback);
+            questionPresenter.showMessage(feedback);
         } else if ((this.currentPos + nHouses) < initialHouseCycle) {
             this.currentPos = initialHouseCycle;
             QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
             String feedback = "Você não consegue voltar as " + (-nHouses) + " casas. Por isso, volte para casa " + initialHouseCycle;
-            questionPresenter.showWarning(feedback);
+            questionPresenter.showMessage(feedback);
         } else {
             this.currentPos = this.currentPos + nHouses;
         }
