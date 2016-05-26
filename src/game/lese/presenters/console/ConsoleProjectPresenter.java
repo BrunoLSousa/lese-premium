@@ -17,7 +17,7 @@ public class ConsoleProjectPresenter implements ProjectPresenter {
     @Override
     public void showProjects() {
         Board board = Board.getInstance();
-        System.out.println(board.getProjectBoard().getName() + "\n" + board.getProjectBoard().getDescription() + "\nNúmero de ciclos: " + board.getProjectBoard().getCycle());
+        System.out.println(board.getProjectBoard().getName() + "\n" + board.getProjectBoard().getDescription() + "\nNúmero de ciclos: " + board.getProjectBoard().getNumCycles());
     }
     
 }

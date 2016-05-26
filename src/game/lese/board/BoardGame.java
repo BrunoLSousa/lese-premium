@@ -16,6 +16,8 @@ import game.lese.presenters.console.ConsolePlayerPresenter;
 import game.lese.presenters.interfaces.BoardPresenter;
 import game.lese.presenters.interfaces.GamePresenter;
 import game.lese.presenters.interfaces.PlayerPresenter;
+import sun.misc.Signal;
+import sun.misc.SignalHandler;
 
 /**
  *
@@ -41,6 +43,7 @@ public class BoardGame {
         int amountPlayers = boardPresenter.getNumPlayers();
         for (int i = 1; i <= amountPlayers; i++) {
             String playerName = playerPresenter.getPlayerName(i);
+            //TODO(cass): set diferent colors for each player
             this.board.addPlayer(playerName, "red");
         }
         gamePresenter.cleanConsole();
@@ -81,7 +84,7 @@ public class BoardGame {
             }
         } while (opcao != 5);
     }
-
+    
     public void menuTeacher() {
         Management management = null;
         int opcao = 0;
@@ -119,6 +122,7 @@ public class BoardGame {
     public void run() {
         String winner = null;
         boolean continueGame = true;
+        
 
         while (winner == null && continueGame) {
             for (PlayerBoard player : this.board.getPlayers()) {

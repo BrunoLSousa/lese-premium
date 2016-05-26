@@ -36,7 +36,7 @@ public class BoardBuilder {
 
         int nHousesPerPhase = 6;
         int idHouse = 0;
-        int developmentCycles = this.board.getProjectBoard().getCycle();
+        int developmentCycles = this.board.getProjectBoard().getNumCycles();
         for (int cycle = 1; cycle <= developmentCycles; cycle++) {
             for (DevelopmentPhase phase : DevelopmentPhase.values()) {
                 for (int i = 1; i <= nHousesPerPhase; i++) {

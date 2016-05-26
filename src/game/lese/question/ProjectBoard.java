@@ -12,12 +12,12 @@ package game.lese.question;
 public class ProjectBoard {
     private String name;
     private String description;
-    private int cycle;
+    private int nCycles;
     
-    public ProjectBoard(String name, String description, int cycle){
+    public ProjectBoard(String name, String description, int numCycles){
         this.name = name;
         this.description = description;
-        this.cycle = cycle;
+        this.nCycles = numCycles;
     }
     
     public String getName(){
@@ -28,7 +28,7 @@ public class ProjectBoard {
         return this.description;
     }
     
-    public int getCycle(){
-        return this.cycle;
+    public int getNumCycles(){
+        return this.nCycles;
     }
 }

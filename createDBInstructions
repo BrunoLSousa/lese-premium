@@ -1,0 +1,6 @@
+CREATE DATABASE lese;
+CREATE USER 'lese'@'localhost' identified by 'l3s3';
+GRANT ALL PRIVILEGES on lese.* to 'lese'@'localhost';
+USE lese;
+SOURCE lese.sql;
+
