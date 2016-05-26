@@ -11,9 +11,7 @@ import game.lese.model.dao.PlayerDAO;
 import game.lese.model.dao.TeacherDAO;
 import game.lese.question.ProjectBoard;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 /**
  *
@@ -50,7 +48,7 @@ public class Board {
         return this.houses.size() - 1;
     }
 
-    public void addPlayer(String nickname, String pawnColor, String idPlayer) {
+    public void addPlayer(String nickname, String pawnColor) {
         this.players.add(new PlayerBoard(nickname));
     }
 

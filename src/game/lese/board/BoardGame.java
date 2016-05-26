@@ -41,8 +41,7 @@ public class BoardGame {
         int amountPlayers = boardPresenter.getNumPlayers();
         for (int i = 1; i <= amountPlayers; i++) {
             String playerName = playerPresenter.getPlayerName(i);
-            String idPlayer = "p" + i;
-            this.board.addPlayer(playerName, "red", idPlayer);
+            this.board.addPlayer(playerName, "red");
         }
         gamePresenter.cleanConsole();
     }
