@@ -35,6 +35,15 @@ public class ManagementQuestion implements Management {
 
     @Override
     public void alter() {
+        
+        //TODO(MM) - question update flow:
+        
+        //1. Show existing questions
+        //2. Ask the user if he wants to change the question or its answers
+        //3. Perform DAO operation
+        //4. Return to initial menu
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

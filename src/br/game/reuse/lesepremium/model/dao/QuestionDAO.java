@@ -51,6 +51,29 @@ public class QuestionDAO {
         return 0;
     }
     
+    public static int updateQuestion(Question question) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("UPDATE question SET phase = ?, description = ?, explanation = ?, score = ?, house = ? WHERE id_question = ?");
+            ps.setInt(1, question.getPhase().getIdPhase());
+            ps.setString(2, question.getDescription());
+            ps.setString(3, question.getExplanation());
+            ps.setInt(4, question.getScore());
+            ps.setInt(5, question.getHouse());
+            ps.setInt(6, question.getIdQueston());
+            return ps.executeUpdate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return 0;
+    }
+    
     public static List<Question> selectQuestionPerPhase(Phase phase){
         Connection connection = null;
         PreparedStatement ps = null;

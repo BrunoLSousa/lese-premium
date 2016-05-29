@@ -27,6 +27,10 @@ import java.util.Scanner;
  */
 public class ConsoleQuestionPresenter implements QuestionPresenter {
 
+    
+    // -------------------------------------------------------------------------
+    // PLAYER RELATED METHODS
+    // -------------------------------------------------------------------------
     @Override
     public void showQuestion(QuestionBoard question, PlayerBoard p) {
         System.out.println("Pergunta Casa " + (p.getCurrentPos() + 1) + " - " + p.getNickname() + " responde.\n");
@@ -85,7 +89,13 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
     public void showMessage(String feedback) {
         System.out.println(feedback + "\n");
     }
-
+    
+    
+    
+    
+    // -------------------------------------------------------------------------
+    // TEACHER RELATED METHODS (ADMIN / MANAGEMENT)
+    // -------------------------------------------------------------------------
     @Override
     public Question getNewQuestion() {
         Scanner scanner = new Scanner(System.in);
