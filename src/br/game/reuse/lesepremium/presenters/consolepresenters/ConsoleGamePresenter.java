@@ -84,14 +84,14 @@ public class ConsoleGamePresenter implements GamePresenter {
     public boolean continueGame() {
         String option = "";
         do{
-            System.out.print("Digite s para continuar ou n para finalizar o jogo: ");
+            System.out.print("Digite s ou enter para continuar ou n para finalizar o jogo: ");
             Scanner scanner = new Scanner(System.in);
             option = scanner.nextLine();
-            if(!option.equals("s") && !option.equals("n")){
+            if(option.length() > 0 && !option.equals("s") && !option.equals("n")){
                 System.out.println("Opção inválida! Tente novamente.");
             }
-        }while(!option.equals("s") && !option.equals("n"));
-        return option.equals("s");
+        }while(option.length() > 0 && !option.equals("s") && !option.equals("n"));
+        return (option.equals("s") || option.length() == 0 );
     }
 
     @Override

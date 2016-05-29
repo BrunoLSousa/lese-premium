@@ -11,6 +11,7 @@ import br.game.reuse.lesepremium.house.QuestionHouse;
 import br.game.reuse.lesepremium.model.Answer;
 import br.game.reuse.lesepremium.model.Phase;
 import br.game.reuse.lesepremium.model.Question;
+import br.game.reuse.lesepremium.model.dao.AnswerDAO;
 import br.game.reuse.lesepremium.model.dao.PhaseDAO;
 import br.game.reuse.lesepremium.model.dao.QuestionDAO;
 import br.game.reuse.lesepremium.presenters.interfaces.BoardPresenter;
@@ -122,13 +123,13 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
         List<Phase> phases = PhaseDAO.selectAllPhases();
         int option = 0;
         while (option < 1 || option > phases.size()) {
-            System.out.println("Phases:");
+            System.out.println("Fases:");
             int i = 1;
             for (Phase p : phases) {
                 System.out.printf("\t%d - %s\n", i, p.getName());
                 i++;
             }
-            System.out.print("\nEscolha a phase da questão:");
+            System.out.print("\nEscolha a fase da questão:");
             option = scanner.nextInt();
             if (option < 1 || option > phases.size()) {
                 System.out.print("Opção inválida!!! Tente novamente.");
@@ -188,5 +189,126 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
         }
         return option.equals("s");
     }
+    
+    @Override
+    public Question getQuestionForEdit(List<Question> questions) {
+        Scanner scanner = new Scanner(System.in);
+        int selectedQuestionId;
+        System.out.println("QUESTÕES CADASTRADAS: ");
+        for (Question q : questions) {
+            System.out.println(q.getIdQueston() + ": " + q.getDescription());
+        }
+        
+        System.out.println("Digite o ID da questão que deseja editar:");
+        System.out.println("(digite -1 para retornar ao menu anterior)");
+        selectedQuestionId = scanner.nextInt();
+        if (selectedQuestionId < 0) {
+            System.out.println("Retornando ao menu anterior"); 
+            return null;
+        }
+        
+        for (Question q: questions) {
+            if (q.getIdQueston() == selectedQuestionId) {
+                System.out.println("Editando questão " + q.getIdQueston() + ": " + q.getDescription());
+                return q;
+            }
+        }
+        
+        System.out.println("Retornando ao menu anterior"); 
+        return null;
+    }
+    
+    @Override
+    public Question editQuestion(Question question) {
+        
+        //EDITING QUESTION ITSELF
+        Scanner scanner = new Scanner(System.in);
+        String option, innerOption, userInput; //helper variables for menus
+        System.out.println("Pressione enter para manter os valores atuais");
+        System.out.print("Digite o enunciado da pergunta: ");
+        System.out.println("(enunciado atual: " + question.getDescription() + ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) question.setDescription(userInput);
+        System.out.print("Digite uma explicação para a resposta correta: ");
+        System.out.println("(explicação atual: " + question.getExplanation() + ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) question.setExplanation(userInput);
+        System.out.print("Digite a Pontuação da questão: ");
+        System.out.println("(pontuação atual: " + question.getScore()+ ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) question.setScore(Integer.parseInt(userInput));
+        System.out.print("Digite a quantidade de casas válidas na questão: ");
+        System.out.println("(quantidade atual: " + question.getHouse()+ ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) question.setHouse(Integer.parseInt(userInput));
+        System.out.print("Digite a fase da questão: ");
+        System.out.println("(fase atual: " + question.getPhase().getIdPhase()+ ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) question.setPhase(new Phase(Integer
+                .parseInt(userInput)));
+        
+        //---------------------------------------------------------------------
+        //EDITING ANSWERS RELATED TO THIS QUESTION
+        do {
+        System.out.println("Deseja editar as respostas desta pergunta? [s/n]");
+        List<Answer> allAnswers = AnswerDAO.selectAnswerPerIdQuestion(question.getIdQueston());
+        option = scanner.nextLine();
+        if (option.length() == 0 || option.startsWith("s") ) {
+            System.out.println("Lista de respostas: ");
+            for (Answer a: allAnswers) {
+                System.out.println(a.getIdAnswer()+ ": " + a.getDescription());
+            }
+            System.out.println("Deseja adicionar nova resposta ou deletar existente? [a|d]");
+            System.out.println("Digite qualquer outro caracter para retornar ao menu anterior.");
+            innerOption = scanner.nextLine();
+            
+            //Adding new question
+            if (innerOption.startsWith("a")) {
+                Answer answer = new Answer();
+                System.out.print("Digite o enunciado da opção de resposta para essa questão: ");
+                answer.setDescription(scanner.nextLine());
+                System.out.println("Esta é a resposta correta? [s|n]");
+                innerOption = scanner.nextLine();
+                if (innerOption.startsWith("s")) {
+                    answer.setStatus("1");
+                } else {
+                    answer.setStatus("0");
+                }
+                
+                answer.setQuestion(question);
+                answer.setIdAnswer(AnswerDAO.createAnswer(answer));
+                allAnswers.add(answer);
+                System.out.println("Resposta adicionada com sucesso.");
+                
+            } else if (innerOption.startsWith("d")) {
+                //Deleting existing question
+                System.out.println("Digite ID da resposta que deseja deletar:");
+                int selectedAnswerId = Integer.parseInt(scanner.nextLine());
+                
+                //if user inputs negative value, we return to previous operation
+                if (selectedAnswerId < 0) return question;
+                Answer selectedAnswer = null;
+                
+                for (Answer a: allAnswers) {
+                    if (a.getIdAnswer() == selectedAnswerId) {
+                        selectedAnswer = a;
+                        break;
+                    }
+                }
+
+                if (selectedAnswer == null) return question;
+                AnswerDAO.deleteAnswer(selectedAnswer);
+                allAnswers.remove(selectedAnswer);
+                System.out.println("Resposta deletada com sucesso.");
+            } 
+
+            question.setAnswer(allAnswers);
+ 
+        }  } while (option.length() == 0 || option.startsWith("s"));
+       
+        
+        return question;
+    }
+    
 
 }

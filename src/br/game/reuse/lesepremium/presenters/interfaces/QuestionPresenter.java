@@ -64,4 +64,9 @@ public interface QuestionPresenter {
      * @return  
      */
     boolean confirmResgisterQuestion();
+    
+    Question getQuestionForEdit(List<Question> questions);
+    
+    Question editQuestion(Question question);
+
 }

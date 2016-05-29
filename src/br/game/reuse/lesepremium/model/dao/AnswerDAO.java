@@ -63,7 +63,25 @@ public class AnswerDAO {
         return 0;
     }
     
-    public List<Answer> selectAnswerPerIdQuestion(int idQuestion){
+    public static int deleteAnswer(Answer answer) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("DELETE FROM answer WHERE id_answer = ?");
+            ps.setInt(1, answer.getIdAnswer());
+            return ps.executeUpdate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return 0;
+    }
+    
+    public static List<Answer> selectAnswerPerIdQuestion(int idQuestion){
         Connection connection = null;
         PreparedStatement ps = null;
         List<Answer> listAnswers = new ArrayList<>();

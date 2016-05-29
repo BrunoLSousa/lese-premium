@@ -74,6 +74,35 @@ public class QuestionDAO {
         return 0;
     }
     
+    public static List<Question> selectAllQuestions() {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        List<Question> listQuestions = new ArrayList<>();
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("SELECT * FROM question ORDER by phase ASC");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Question question = new Question();
+                question.setIdQueston(rs.getInt("id_question"));
+                question.setPhase(new Phase(rs.getInt("phase")));
+                question.setDescription(rs.getString("description"));
+                question.setExplanation(rs.getString("explanation"));
+                question.setScore(rs.getInt("score"));
+                question.setHouse(rs.getInt("house"));
+                question.setAnswer(AnswerDAO.selectAnswerPerIdQuestion(question.getIdQueston()));
+                listQuestions.add(question);
+            }            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return listQuestions;
+    }
+    
     public static List<Question> selectQuestionPerPhase(Phase phase){
         Connection connection = null;
         PreparedStatement ps = null;
