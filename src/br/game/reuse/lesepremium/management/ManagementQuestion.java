@@ -52,16 +52,6 @@ public class ManagementQuestion implements Management {
        
        questionPresenter.showMessage("Questão atualizada com sucesso.");
        
-       //
-
-        //TODO(MM) - question update flow:
-        
-        //1. Show existing questions
-        //2. Select question given by the user
-        //3. Ask the user if he wants to change the question or its answers
-        //4. Perform DAO operation
-        //5. Return to initial menu
-        
         
     }
 

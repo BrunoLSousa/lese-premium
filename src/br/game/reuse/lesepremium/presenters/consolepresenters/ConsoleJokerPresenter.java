@@ -9,6 +9,7 @@ import br.game.reuse.lesepremium.house.House;
 import br.game.reuse.lesepremium.house.JokerHouse;
 import br.game.reuse.lesepremium.model.Joker;
 import br.game.reuse.lesepremium.model.Phase;
+import br.game.reuse.lesepremium.model.Question;
 import br.game.reuse.lesepremium.model.dao.PhaseDAO;
 import br.game.reuse.lesepremium.outcome.BonusOutcome;
 import br.game.reuse.lesepremium.presenters.interfaces.JokerPresenter;
@@ -42,7 +43,7 @@ public class ConsoleJokerPresenter implements JokerPresenter {
     @Override
     public Joker getNewJoker() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n--------------------------Cadastro de Questões---------------------------\n");
+        System.out.println("\n--------------------------Cadastro de Coringas---------------------------\n");
         Joker joker = new Joker();
         Phase phase = getPhaseJokers();
         joker.setPhase(phase);
@@ -68,7 +69,7 @@ public class ConsoleJokerPresenter implements JokerPresenter {
                 System.out.printf("\t%d - %s\n", i, p.getName());
                 i++;
             }
-            System.out.print("\nEscolha a phase da questão:");
+            System.out.print("\nEscolha a phase do coringa:");
             option = scanner.nextInt();
             if (option < 1 || option > phases.size()) {
                 System.out.print("Opção inválida!!! Tente novamente.");
@@ -106,6 +107,65 @@ public class ConsoleJokerPresenter implements JokerPresenter {
             }
         }
         return option.equals("s");
+    }
+    
+    @Override 
+    public Joker getJokerForEdit(List<Joker> allJokers) {
+        Scanner scanner = new Scanner(System.in);
+        int selectedJokerId;
+        System.out.println("CORINGAS CADASTRADAS: ");
+        for (Joker j : allJokers) {
+            System.out.println(j.getIdJoker() + ": " + j.getTitle());
+        }
+        
+        System.out.println("Digite o ID do coringa que deseja editar:");
+        System.out.println("(digite -1 para retornar ao menu anterior)");
+        selectedJokerId = scanner.nextInt();
+        if (selectedJokerId < 0) {
+            System.out.println("Retornando ao menu anterior"); 
+            return null;
+        }
+        
+        for (Joker j: allJokers) {
+            if (j.getIdJoker() == selectedJokerId) {
+                System.out.println("Editando coringa " + j.getIdJoker() + ": " + j.getTitle());
+                return j;
+            }
+        }
+        
+        System.out.println("Retornando ao menu anterior"); 
+        return null;
+    }
+
+    @Override
+    public Joker editJoker(Joker selectedJoker) {
+          
+        Scanner scanner = new Scanner(System.in);
+        String option, userInput; //helper variables for menus
+        System.out.println("Pressione enter para manter os valores atuais");
+        System.out.print("Digite o titulo do coringa: ");
+        System.out.println("(titulo atual: " + selectedJoker.getTitle() + ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) selectedJoker.setTitle(userInput);
+        System.out.print("Digite a mensagem do coringa");
+        System.out.println("(mensagem atual: " + selectedJoker.getTitle() + ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) selectedJoker.setDescription(userInput);
+        System.out.print("Digite a Pontuação do coringa: ");
+        System.out.println("(pontuação atual: " + selectedJoker.getScore()+ ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) selectedJoker.setScore(Integer.parseInt(userInput));
+        System.out.print("Digite a quantidade de casas válidas do coringa: ");
+        System.out.println("(quantidade atual: " + selectedJoker.getHouse()+ ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) selectedJoker.setHouse(Integer.parseInt(userInput));
+        System.out.print("Digite a fase da questão: ");
+        System.out.println("(fase atual: " + selectedJoker.getPhase().getIdPhase()+ ")");
+        userInput = scanner.nextLine();
+        if (userInput.length() > 0) selectedJoker.setPhase(new Phase(Integer
+                .parseInt(userInput)));
+        
+        return selectedJoker;
     }
 
 }

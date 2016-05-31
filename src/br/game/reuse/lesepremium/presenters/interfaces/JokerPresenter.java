@@ -7,6 +7,7 @@ package br.game.reuse.lesepremium.presenters.interfaces;
 
 import br.game.reuse.lesepremium.house.House;
 import br.game.reuse.lesepremium.model.Joker;
+import java.util.List;
 
 /**
  *
@@ -40,4 +41,8 @@ public interface JokerPresenter {
      * @return 
      */
     boolean confirmResgisterJoker();
+
+    public Joker getJokerForEdit(List<Joker> allJokers);
+
+    public Joker editJoker(Joker selectedJoker);
 }
