@@ -902,10 +902,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id_user`, `name`) VALUES
 (1, 'Bruno'),
-(2, 'Bruno'),
-(3, 'Bruno'),
-(4, 'Professor Teste'),
-(5, 'pri');
+(2, 'MM'),
+(3, 'Cass'),
+(4, 'Professor Ronan'),
+(5, 'Pri');
 
 --
 -- Constraints for dumped tables
