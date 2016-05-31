@@ -113,9 +113,9 @@ public class ConsoleJokerPresenter implements JokerPresenter {
     public Joker getJokerForEdit(List<Joker> allJokers) {
         Scanner scanner = new Scanner(System.in);
         int selectedJokerId;
-        System.out.println("CORINGAS CADASTRADAS: ");
+        System.out.println("CORINGAS CADASTRADOS: ");
         for (Joker j : allJokers) {
-            System.out.println(j.getIdJoker() + ": " + j.getTitle());
+            System.out.println(j.getIdJoker() + ": " + j.getDescription());
         }
         
         System.out.println("Digite o ID do coringa que deseja editar:");
@@ -141,14 +141,14 @@ public class ConsoleJokerPresenter implements JokerPresenter {
     public Joker editJoker(Joker selectedJoker) {
           
         Scanner scanner = new Scanner(System.in);
-        String option, userInput; //helper variables for menus
+        String  userInput; 
         System.out.println("Pressione enter para manter os valores atuais");
         System.out.print("Digite o titulo do coringa: ");
         System.out.println("(titulo atual: " + selectedJoker.getTitle() + ")");
         userInput = scanner.nextLine();
         if (userInput.length() > 0) selectedJoker.setTitle(userInput);
         System.out.print("Digite a mensagem do coringa");
-        System.out.println("(mensagem atual: " + selectedJoker.getTitle() + ")");
+        System.out.println("(mensagem atual: " + selectedJoker.getDescription() + ")");
         userInput = scanner.nextLine();
         if (userInput.length() > 0) selectedJoker.setDescription(userInput);
         System.out.print("Digite a Pontuação do coringa: ");
@@ -159,7 +159,7 @@ public class ConsoleJokerPresenter implements JokerPresenter {
         System.out.println("(quantidade atual: " + selectedJoker.getHouse()+ ")");
         userInput = scanner.nextLine();
         if (userInput.length() > 0) selectedJoker.setHouse(Integer.parseInt(userInput));
-        System.out.print("Digite a fase da questão: ");
+        System.out.print("Digite a fase do coringa: ");
         System.out.println("(fase atual: " + selectedJoker.getPhase().getIdPhase()+ ")");
         userInput = scanner.nextLine();
         if (userInput.length() > 0) selectedJoker.setPhase(new Phase(Integer

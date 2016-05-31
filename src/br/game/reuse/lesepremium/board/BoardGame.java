@@ -102,7 +102,8 @@ public class BoardGame {
                     management.create();
                     break;
                 case 4:
-                    //TODO(Bruno) - Alter joker. 
+                    management = new ManagementJoker();
+                    management.alter();
                     break;
                 case 5:
                     this.teacherBoard.changePassword();
