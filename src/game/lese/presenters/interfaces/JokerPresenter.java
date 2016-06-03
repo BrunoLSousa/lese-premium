@@ -7,6 +7,7 @@ package game.lese.presenters.interfaces;
 
 import game.lese.house.House;
 import game.lese.model.Joker;
+import java.util.List;
 
 /**
  *
@@ -40,4 +41,8 @@ public interface JokerPresenter {
      * @return 
      */
     boolean confirmResgisterJoker();
+
+    public Joker getJokerForEdit(List<Joker> allJokers);
+
+    public Joker editJoker(Joker selectedJoker);
 }

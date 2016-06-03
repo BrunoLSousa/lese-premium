@@ -51,6 +51,58 @@ public class QuestionDAO {
         return 0;
     }
     
+    public static int updateQuestion(Question question) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("UPDATE question SET phase = ?, description = ?, explanation = ?, score = ?, house = ? WHERE id_question = ?");
+            ps.setInt(1, question.getPhase().getIdPhase());
+            ps.setString(2, question.getDescription());
+            ps.setString(3, question.getExplanation());
+            ps.setInt(4, question.getScore());
+            ps.setInt(5, question.getHouse());
+            ps.setInt(6, question.getIdQueston());
+            return ps.executeUpdate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return 0;
+    }
+    
+    public static List<Question> selectAllQuestions() {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        List<Question> listQuestions = new ArrayList<>();
+        try {
+            connection = DBConnection.getConnection();
+            ps = connection.prepareStatement("SELECT * FROM question ORDER by phase ASC");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Question question = new Question();
+                question.setIdQueston(rs.getInt("id_question"));
+                question.setPhase(new Phase(rs.getInt("phase")));
+                question.setDescription(rs.getString("description"));
+                question.setExplanation(rs.getString("explanation"));
+                question.setScore(rs.getInt("score"));
+                question.setHouse(rs.getInt("house"));
+                question.setAnswer(AnswerDAO.selectAnswerPerIdQuestion(question.getIdQueston()));
+                listQuestions.add(question);
+            }            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DBConnection.closeConnection(connection, ps);
+        }
+        return listQuestions;
+    }
+    
     public static List<Question> selectQuestionPerPhase(Phase phase){
         Connection connection = null;
         PreparedStatement ps = null;

@@ -21,6 +21,10 @@ public class Phase {
         this.name = newName;
     }
     
+    public Phase(int newIdPhase) {
+        this.idPhase = newIdPhase;
+    }
+    
     public Phase(int newIdPhase, String newName){
         this.idPhase = newIdPhase;
         this.name = newName;
