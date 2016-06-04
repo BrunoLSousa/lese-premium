@@ -96,14 +96,16 @@ public class BoardGame {
                     management.create();
                     break;
                 case 2:
-                    //Alter question. 
+                    management = new ManagementQuestion();
+                    management.alter();
                     break;
                 case 3:
                     management = new ManagementJoker();
                     management.create();
                     break;
                 case 4:
-                    //Alter joker. 
+                    management = new ManagementJoker();
+                    management.alter();
                     break;
                 case 5:
                     this.teacherBoard.changePassword();

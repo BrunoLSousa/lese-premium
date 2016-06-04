@@ -11,6 +11,8 @@ import game.lese.model.dao.AnswerDAO;
 import game.lese.model.dao.QuestionDAO;
 import game.lese.presenters.console.ConsoleQuestionPresenter;
 import game.lese.presenters.interfaces.QuestionPresenter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,7 +37,22 @@ public class ManagementQuestion implements Management {
 
     @Override
     public void alter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
+       
+       List<Question> allQuestions = QuestionDAO.selectAllQuestions();
+       Question selectedQuestion = questionPresenter.getQuestionForEdit(allQuestions);
+       
+       if (selectedQuestion == null) return;
+         
+       Question result = questionPresenter.editQuestion(selectedQuestion);
+
+       if (result == null) return;
+       
+       QuestionDAO.updateQuestion(result);
+       
+       questionPresenter.showMessage("Questão atualizada com sucesso.");
+       
+        
     }
 
 }
