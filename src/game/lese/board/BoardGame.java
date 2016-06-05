@@ -76,6 +76,7 @@ public class BoardGame {
                 } else if (!continueGame) {
                     this.board.destroyPlayers();
                     boardPresenter.finalizeGame();
+                    break;
                 }
             }
         }

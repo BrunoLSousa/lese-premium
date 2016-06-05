@@ -6,9 +6,7 @@
 package game.lese.board;
 
 import game.lese.house.House;
-import game.lese.model.Teacher;
 import game.lese.model.dao.PlayerDAO;
-import game.lese.model.dao.TeacherDAO;
 import game.lese.question.ProjectBoard;
 import java.util.ArrayList;
 import java.util.List;
