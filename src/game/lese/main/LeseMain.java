@@ -5,20 +5,18 @@
  */
 package game.lese.main;
 
-import game.lese.board.BoardGame;
-
 /**
  *
  * @author bruno
  */
-public class Lesepremium {
+public class LeseMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BoardGame game = new BoardGame();
-        game.init();
+        GameMain game = new GameMain();
+        game.showMenu();
     }
 
 }

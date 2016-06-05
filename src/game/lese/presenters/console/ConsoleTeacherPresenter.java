@@ -5,7 +5,7 @@
  */
 package game.lese.presenters.console;
 
-import game.lese.management.TeacherBoard;
+import game.lese.management.Manager;
 import game.lese.model.Teacher;
 import game.lese.presenters.interfaces.GamePresenter;
 import game.lese.presenters.interfaces.TeacherPresenter;
@@ -36,7 +36,7 @@ public class ConsoleTeacherPresenter implements TeacherPresenter {
     @Override
     public void showFeedbackAutentication(boolean validation) {
         if (validation) {
-            TeacherBoard teacher = TeacherBoard.getInstance();
+            Manager teacher = Manager.getInstance();
             if (teacher.isAutenticated()) {
                 System.out.println("\nAutenticação Realizada com sucesso!!!");
             } else {

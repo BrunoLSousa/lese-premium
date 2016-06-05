@@ -11,7 +11,6 @@ import game.lese.model.dao.AnswerDAO;
 import game.lese.model.dao.QuestionDAO;
 import game.lese.presenters.console.ConsoleQuestionPresenter;
 import game.lese.presenters.interfaces.QuestionPresenter;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

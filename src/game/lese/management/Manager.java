@@ -19,18 +19,18 @@ import java.util.logging.Logger;
  *
  * @author bruno
  */
-public class TeacherBoard {
+public class Manager {
 
-    private static TeacherBoard instance = null;
+    private static Manager instance = null;
     private Teacher teacher;
 
-    private TeacherBoard() {
+    private Manager() {
         this.teacher = null;
     }
 
-    public static TeacherBoard getInstance() {
+    public static Manager getInstance() {
         if (instance == null) {
-            instance = new TeacherBoard();
+            instance = new Manager();
         }
         return instance;
     }
@@ -53,7 +53,7 @@ public class TeacherBoard {
             teacherPresenter.showFeedbackAutentication(validation);
             return (this.teacher != null);
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(TeacherBoard.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -80,7 +80,7 @@ public class TeacherBoard {
             }
             teacherPresenter.showFeedbackChangePassword((t!=null), data, confirm);
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(TeacherBoard.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Manager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
