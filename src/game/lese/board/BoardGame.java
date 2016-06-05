@@ -16,9 +16,6 @@ import game.lese.presenters.console.ConsolePlayerPresenter;
 import game.lese.presenters.interfaces.BoardPresenter;
 import game.lese.presenters.interfaces.GamePresenter;
 import game.lese.presenters.interfaces.PlayerPresenter;
-import sun.misc.Signal;
-import sun.misc.SignalHandler;
-
 /**
  *
  * @author cass
