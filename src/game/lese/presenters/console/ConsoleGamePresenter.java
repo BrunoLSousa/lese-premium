@@ -5,6 +5,7 @@
  */
 package game.lese.presenters.console;
 
+import game.lese.main.DynamicAnnotation;
 import game.lese.model.Player;
 import game.lese.model.dao.PlayerDAO;
 import game.lese.presenters.interfaces.GamePresenter;
@@ -23,8 +24,15 @@ public class ConsoleGamePresenter implements GamePresenter {
         System.out.println("1 - Jogar");
         System.out.println("2 - Acessar Ranking");
         System.out.println("3 - Ajuda");
-        System.out.println("4 - Autenticar");
-        System.out.println("5 - Exit\n");
+        
+        
+        if(DynamicAnnotation.PROJECT_MANAGMENT) {
+            System.out.println("4 - Autenticar");
+            System.out.println("5 - Exit\n");
+        } else {
+            System.out.println("4 - Exit\n");            
+        }
+        
         System.out.print("Escolha a opção: ");
         Scanner entrada = new Scanner(System.in);
         return entrada.nextInt();

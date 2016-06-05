@@ -26,30 +26,55 @@ public class GameMain {
     public void showMenu() {
         gamePresenter.welcome();
         int opcao;
-        do {
-            opcao = gamePresenter.menu();
-            switch (opcao) {
-                case 1:
-                    BoardGame game = new BoardGame();
-                    game.init();
-                    break;
-                case 2:
-                    gamePresenter.showRanking();
-                    break;
-                case 3:
-                    gamePresenter.showHelp();
-                    break;
-                case 4:
-                    ManagementMain mgt = new ManagementMain();
-                    mgt.showMenu();
-                    break;
-                case 5:
-                    gamePresenter.showExit();
-                    break;
-                default:
-                    gamePresenter.showDefault();
-                    break;
-            }
-        } while (opcao != 5);
+        
+        if(DynamicAnnotation.PROJECT_MANAGMENT) {
+            do {
+                opcao = gamePresenter.menu();
+                switch (opcao) {
+                    case 1:
+                        BoardGame game = new BoardGame();
+                        game.init();
+                        break;
+                    case 2:
+                        gamePresenter.showRanking();
+                        break;
+                    case 3:
+                        gamePresenter.showHelp();
+                        break;
+                    case 4:
+                        ManagementMain mgt = new ManagementMain();
+                        mgt.showMenu();
+                        break;
+                    case 5:
+                        gamePresenter.showExit();
+                        break;
+                    default:
+                        gamePresenter.showDefault();
+                        break;
+                }
+            } while (opcao != 5);
+        } else {
+            do {
+                opcao = gamePresenter.menu();
+                switch (opcao) {
+                    case 1:
+                        BoardGame game = new BoardGame();
+                        game.init();
+                        break;
+                    case 2:
+                        gamePresenter.showRanking();
+                        break;
+                    case 3:
+                        gamePresenter.showHelp();
+                        break;
+                    case 4:
+                        gamePresenter.showExit();
+                        break;
+                    default:
+                        gamePresenter.showDefault();
+                        break;
+                }
+            } while (opcao != 4);
+        }
     }
 }

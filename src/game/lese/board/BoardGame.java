@@ -6,6 +6,7 @@
 package game.lese.board;
 
 import game.lese.house.House;
+import game.lese.main.DynamicAnnotation;
 import game.lese.presenters.console.ConsoleBoardPresenter;
 import game.lese.presenters.console.ConsoleGamePresenter;
 import game.lese.presenters.console.ConsolePlayerPresenter;
@@ -19,9 +20,9 @@ import game.lese.presenters.interfaces.PlayerPresenter;
 public class BoardGame {
 
     private Board board;
-    private BoardPresenter boardPresenter;
-    private GamePresenter gamePresenter;
-    private PlayerPresenter playerPresenter;
+    private final BoardPresenter boardPresenter;
+    private final GamePresenter gamePresenter;
+    private final PlayerPresenter playerPresenter;
     
     public BoardGame() {
         boardPresenter = new ConsoleBoardPresenter();
@@ -43,7 +44,12 @@ public class BoardGame {
     }
 
     private void setUpGame() {
-        int amountPlayers = boardPresenter.getNumPlayers();
+        int amountPlayers = 1;
+        
+        if(DynamicAnnotation.MULTIPLAYER) {
+            amountPlayers = boardPresenter.getNumPlayers();
+        }
+        
         for (int i = 1; i <= amountPlayers; i++) {
             String playerName = playerPresenter.getPlayerName(i);
             //TODO(cass): set diferent colors for each player
