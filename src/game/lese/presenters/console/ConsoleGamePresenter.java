@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class ConsoleGamePresenter implements GamePresenter {
 
     @Override
-    public int menu() {
+    public int showMenu() {
         System.out.println("\nMenu Principal:");
         System.out.println("1 - Jogar");
         System.out.println("2 - Acessar Ranking");
@@ -69,7 +69,7 @@ public class ConsoleGamePresenter implements GamePresenter {
     }
 
     @Override
-    public void welcome() {
+    public void showWelcomeMsg() {
         System.out.println("Seja Bem Vindo ao LeSE!");
     }
 

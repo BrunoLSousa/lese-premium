@@ -15,7 +15,7 @@ public interface GamePresenter {
      * Shows LeSe's menu screen to the user.
      * @return 
      */
-    int menu();
+    int showMenu();
 
     /**
      * Shows LeSe's Ranking Screen to the user.
@@ -40,7 +40,7 @@ public interface GamePresenter {
     /**
      * Shows LeSe's Default Screen to the user.
      */
-    void welcome();
+    void showWelcomeMsg ();
     
     /**
      * Clean Console's Game.

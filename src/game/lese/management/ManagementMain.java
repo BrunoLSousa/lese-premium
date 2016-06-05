@@ -5,7 +5,6 @@
  */
 package game.lese.management;
 
-import game.lese.presenters.console.ConsoleGamePresenter;
 import game.lese.presenters.console.ConsoleTeacherPresenter;
 import game.lese.presenters.interfaces.TeacherPresenter;
 

@@ -24,12 +24,12 @@ public class GameMain {
     }
     
     public void showMenu() {
-        gamePresenter.welcome();
+        gamePresenter.showWelcomeMsg();
         int opcao;
         
         if(DynamicAnnotation.PROJECT_MANAGMENT) {
             do {
-                opcao = gamePresenter.menu();
+                opcao = gamePresenter.showMenu();
                 switch (opcao) {
                     case 1:
                         BoardGame game = new BoardGame();
@@ -55,7 +55,7 @@ public class GameMain {
             } while (opcao != 5);
         } else {
             do {
-                opcao = gamePresenter.menu();
+                opcao = gamePresenter.showMenu();
                 switch (opcao) {
                     case 1:
                         BoardGame game = new BoardGame();
