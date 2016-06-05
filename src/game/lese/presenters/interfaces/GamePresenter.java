@@ -18,12 +18,6 @@ public interface GamePresenter {
     int menu();
 
     /**
-     * Shows LeSe's menu Teacher screen to the user.
-     * @return 
-     */
-    int menuTeacher();
-
-    /**
      * Shows LeSe's Ranking Screen to the user.
      */
     void showRanking();
@@ -37,11 +31,6 @@ public interface GamePresenter {
      * Shows LeSe's Help Screen to the user.
      */
     void showExit();
-
-    /**
-     * Logout.
-     */
-    void showExitRestrictedArea();
 
     /**
      * Shows LeSe's Default Screen to the user.

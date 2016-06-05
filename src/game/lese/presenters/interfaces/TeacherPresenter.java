@@ -36,4 +36,16 @@ public interface TeacherPresenter {
      * @param data
      */
     void showFeedbackChangePassword(boolean validationPassword, String[] data, int confirm);
+    
+    int showMenu();
+
+    /**
+     * Logout.
+     */
+    void showExitRestrictedArea();
+
+    /**
+     * Shows LeSe's Default Screen to the user.
+     */
+    void showDefault();
 }

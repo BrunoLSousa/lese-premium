@@ -6,19 +6,20 @@
 package game.lese.management;
 
 import game.lese.presenters.console.ConsoleGamePresenter;
-import game.lese.presenters.interfaces.GamePresenter;
+import game.lese.presenters.console.ConsoleTeacherPresenter;
+import game.lese.presenters.interfaces.TeacherPresenter;
 
 /**
  *
  * @author cass
  */
 public class ManagementMain {
-    private Manager teacherBoard;
-    private GamePresenter gamePresenter;
+    private final Manager teacherBoard;
+    private final TeacherPresenter teacherPresenter;
 
     
     public ManagementMain() {
-        gamePresenter = new ConsoleGamePresenter();
+        teacherPresenter = new ConsoleTeacherPresenter();
         teacherBoard = Manager.getInstance();
     }
     
@@ -28,7 +29,7 @@ public class ManagementMain {
             Management management;
             int opcao;
             do {
-                opcao = gamePresenter.menuTeacher();
+                opcao = teacherPresenter.showMenu();
                 switch (opcao) {
                     case 1:
                         management = new ManagementQuestion();
@@ -51,10 +52,10 @@ public class ManagementMain {
                         break;
                     case 6:
                         this.teacherBoard.logout();
-                        gamePresenter.showExitRestrictedArea();
+                        teacherPresenter.showExitRestrictedArea();
                         break;
                     default:
-                        gamePresenter.showDefault();
+                        teacherPresenter.showDefault();
                         break;
                 }
             } while (this.teacherBoard.isAutenticated());

@@ -6,7 +6,6 @@
 package game.lese.presenters.console;
 
 import game.lese.management.Manager;
-import game.lese.model.Teacher;
 import game.lese.presenters.interfaces.GamePresenter;
 import game.lese.presenters.interfaces.TeacherPresenter;
 import java.io.Console;
@@ -79,6 +78,31 @@ public class ConsoleTeacherPresenter implements TeacherPresenter {
         } else {
             System.out.println("\nSenha atual inválida!!!");
         }
+    }
+
+    @Override
+    public int showMenu() {
+        System.out.println("\n\nÁrea Restrita");
+        System.out.println("\nMenu do Professor:");
+        System.out.println("1 - Cadastrar Questões");
+        System.out.println("2 - Alterar Questões");
+        System.out.println("3 - Cadastrar Coringas");
+        System.out.println("4 - Alterar Coringas");
+        System.out.println("5 - Alterar Senha");
+        System.out.println("6 - Sair da área restrita\n");
+        System.out.print("Escolha a opção: ");
+        Scanner entrada = new Scanner(System.in);
+        return entrada.nextInt();
+    }
+
+    @Override
+    public void showExitRestrictedArea() {
+        System.out.println("Autenticação encerrada com sucesso!!!");
+    }
+
+    @Override
+    public void showDefault() {
+        System.out.println("Opção inexistente! Escolha novamente.");
     }
 
 }
