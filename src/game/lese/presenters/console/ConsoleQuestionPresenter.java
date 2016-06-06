@@ -32,10 +32,29 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
     // PLAYER RELATED METHODS
     // -------------------------------------------------------------------------
     @Override
-    public void showQuestion(QuestionBoard question, PlayerBoard p) {
+    public void showQuestion(QuestionHouse question, PlayerBoard p) {
+        String namePhase = "";
+        switch (question.getDevPhase()) {
+            case Inception:
+                namePhase = "Requisitos";
+                break;
+            case Elaboration:
+                namePhase = "Projeto";
+                break;
+            case Construction:
+                namePhase = "Implementação";
+                break;
+            case Verification:
+                namePhase = "Teste";
+                break;
+            case Transition:
+                namePhase = "Implantação";
+                break;
+        }
+        System.out.println("Questão - " + namePhase + "\n");
         System.out.println("Pergunta Casa " + (p.getCurrentPos() + 1) + " - " + p.getNickname() + " responde.\n");
         BoardPresenter boardPresenter = new ConsoleBoardPresenter();
-        System.out.println(question.getDescription());
+        System.out.println(question.getQuestion().getDescription());
     }
 
     @Override

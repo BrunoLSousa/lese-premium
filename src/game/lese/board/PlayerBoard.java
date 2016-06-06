@@ -51,14 +51,14 @@ public class PlayerBoard {
         int initialHouseCycle = ((this.currentCycle - 1) * DevelopmentPhase.values().length * 6) + 1;
         if ((this.currentPos + nHouses) > finalHouseCycle) {
             this.currentPos = finalHouseCycle;
-            QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
-            String feedback = "Você não consegue avançar as " + nHouses + " casas. Por isso, vá para casa " + finalHouseCycle;
-            questionPresenter.showMessage(feedback);
+//            QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
+//            String feedback = "Você não consegue avançar as " + nHouses + " casas. Por isso, vá para casa " + finalHouseCycle;
+//            questionPresenter.showMessage(feedback);
         } else if ((this.currentPos + nHouses) < initialHouseCycle) {
             this.currentPos = initialHouseCycle;
-            QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
-            String feedback = "Você não consegue voltar as " + (-nHouses) + " casas. Por isso, volte para casa " + initialHouseCycle;
-            questionPresenter.showMessage(feedback);
+//            QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
+//            String feedback = "Você não consegue voltar as " + (-nHouses) + " casas. Por isso, volte para casa " + initialHouseCycle;
+//            questionPresenter.showMessage(feedback);
         } else {
             this.currentPos = this.currentPos + nHouses;
         }

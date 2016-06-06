@@ -84,7 +84,7 @@ public class BoardBuilder {
     }
 
     public void buildFinalHouse(int idHouse, int cycle) {
-        String message = "Parabéns! \nVocê acaba completou todos os ciclos de desenvolvimento do software.\n\n"
+        String message = "Parabéns! \nVocê completou todos os ciclos de desenvolvimento do software.\n\n"
                 + "Fim do jogo.";
 
         HouseOutcome outcome = new BonusOutcome(0, 0, (float) 0.0);

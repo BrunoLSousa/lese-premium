@@ -41,8 +41,8 @@ public class InitialHouse extends House {
 
     @Override
     protected void interactWithPlayer(PlayerBoard p) {
-        BoardPresenter boardPresenter = new ConsoleBoardPresenter();
-        boardPresenter.showHeaderGame();
+//        BoardPresenter boardPresenter = new ConsoleBoardPresenter();
+//        boardPresenter.showHeaderGame();
         MessagePresenter initialPresenter = new ConsoleInitialHousePresenter();
         initialPresenter.showContent(this);
     }

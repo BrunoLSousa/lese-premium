@@ -23,8 +23,26 @@ public class ConsoleJokerPresenter implements JokerPresenter {
 
     @Override
     public void showContent(House house) {
-        System.out.println("Coringa\n");
-        JokerHouse joker = (JokerHouse) house;
+        String namePhase = "";
+        switch (house.getDevPhase()) {
+            case Inception:
+                namePhase = "Requisitos";
+                break;
+            case Elaboration:
+                namePhase = "Projeto";
+                break;
+            case Construction:
+                namePhase = "Implementação";
+                break;
+            case Verification:
+                namePhase = "Teste";
+                break;
+            case Transition:
+                namePhase = "Implantação";
+                break;
+        }
+        System.out.println("Coringa - " + namePhase + "\n");
+        JokerHouse joker = (JokerHouse)house;
         if (joker.getOutcome() instanceof BonusOutcome) {
             System.out.println(joker.getJoker().getTitle() + "\n" + joker.getJoker().getDescription()
                     + "\nVocê ganhou " + joker.getOutcome().getPoints() + " pontos.\n");

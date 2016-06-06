@@ -44,7 +44,10 @@ public class ConsoleBoardPresenter implements BoardPresenter {
     
     @Override
     public void showWinner(PlayerBoard player) {
-        System.out.println("Player " + player.getNickname() + " won!!!");
+        String message = "Parabéns!" + player.getNickname() + "\nVocê completou todos os ciclos de desenvolvimento do software.\nEsperamos que você tenha"
+                + "aprendido muitos conceitos da área de engenharia de software.\n\n"
+                + "Fim do jogo.\n\n";
+        System.out.println(message);
     }
     
     @Override

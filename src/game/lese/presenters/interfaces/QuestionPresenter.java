@@ -7,6 +7,7 @@ package game.lese.presenters.interfaces;
 
 import game.lese.board.PlayerBoard;
 import game.lese.house.House;
+import game.lese.house.QuestionHouse;
 import game.lese.model.Phase;
 import game.lese.model.Question;
 import game.lese.question.QuestionBoard;
@@ -24,7 +25,7 @@ public interface QuestionPresenter {
      * @param question
      * @param p
      */
-    void showQuestion(QuestionBoard question, PlayerBoard p);
+    void showQuestion(QuestionHouse question, PlayerBoard p);
     
     /**
      * Displays question choices to the player.
