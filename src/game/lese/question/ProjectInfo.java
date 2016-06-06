@@ -9,21 +9,26 @@ package game.lese.question;
  *
  * @author bruno
  */
-public class JokerBoard {
-    private String title;
+public class ProjectInfo {
+    private String name;
     private String description;
+    private int nCycles;
     
-    public JokerBoard(String title, String description){
-        this.title = title;
+    public ProjectInfo(String name, String description, int numCycles){
+        this.name = name;
         this.description = description;
+        this.nCycles = numCycles;
     }
     
-    public String getTitle(){
-        return this.title;
+    public String getName(){
+        return this.name;
     }
     
     public String getDescription(){
         return this.description;
     }
     
+    public int getNumCycles(){
+        return this.nCycles;
+    }
 }

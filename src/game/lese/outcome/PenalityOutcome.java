@@ -7,8 +7,6 @@ package game.lese.outcome;
 
 import game.lese.board.PlayerBoard;
 import game.lese.house.House;
-import game.lese.house.JokerHouse;
-import game.lese.question.JokerBoard;
 
 /**
  *

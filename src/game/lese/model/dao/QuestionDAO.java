@@ -6,7 +6,6 @@
 package game.lese.model.dao;
 
 import game.lese.connection.DBConnection;
-import game.lese.model.Answer;
 import game.lese.model.Phase;
 import game.lese.model.Question;
 import java.sql.Connection;

@@ -7,7 +7,7 @@ package game.lese.board;
 
 import game.lese.house.House;
 import game.lese.model.dao.PlayerDAO;
-import game.lese.question.ProjectBoard;
+import game.lese.question.ProjectInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Board {
     private static Board instance;
     private List<House> houses;
     private List<PlayerBoard> players;
-    private ProjectBoard project;
+    private ProjectInfo project;
 
     private Board() {
         this.houses = new ArrayList<>();
@@ -91,10 +91,10 @@ public class Board {
     }
 
     public void createProjectBoard(String name, String description, int cycle) {
-        this.project = new ProjectBoard(name, description, cycle);
+        this.project = new ProjectInfo(name, description, cycle);
     }
 
-    public ProjectBoard getProjectBoard() {
+    public ProjectInfo getProjectBoard() {
         return this.project;
     }
     

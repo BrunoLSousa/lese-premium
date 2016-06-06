@@ -5,8 +5,6 @@
  */
 package game.lese.board;
 
-import game.lese.house.House;
-
 /**
  *
  * @author cass

@@ -18,7 +18,7 @@ import game.lese.presenters.console.ConsoleBoardPresenter;
 import game.lese.presenters.console.ConsoleQuestionPresenter;
 import game.lese.presenters.interfaces.BoardPresenter;
 import game.lese.presenters.interfaces.QuestionPresenter;
-import game.lese.question.QuestionBoard;
+import game.lese.question.QuestionInfo;
 import java.util.List;
 
 /**
@@ -27,20 +27,20 @@ import java.util.List;
  */
 public class QuestionHouse extends House {
 
-    private QuestionBoard question;
+    private QuestionInfo question;
     private boolean correct;
 
-    public QuestionHouse(int id, HouseOutcome outcome, DevelopmentPhase phase, QuestionBoard q, int cycle) {
+    public QuestionHouse(int id, HouseOutcome outcome, DevelopmentPhase phase, QuestionInfo q, int cycle) {
         super(id, outcome, phase, cycle);
         this.question = q;
         this.correct = false;
     }
 
-    public void setQuestion(QuestionBoard q) {
+    public void setQuestion(QuestionInfo q) {
         this.question = q;
     }
 
-    public QuestionBoard getQuestion() {
+    public QuestionInfo getQuestion() {
         return this.question;
     }
 

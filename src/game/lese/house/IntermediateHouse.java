@@ -9,12 +9,8 @@ import game.lese.board.DevelopmentPhase;
 import game.lese.board.PlayerBoard;
 import game.lese.outcome.HouseOutcome;
 import game.lese.presenters.console.ConsoleBoardPresenter;
-import game.lese.presenters.console.ConsoleGamePresenter;
-import game.lese.presenters.console.ConsoleHousePresenter;
 import game.lese.presenters.console.ConsoleIntermediateHousePresenter;
 import game.lese.presenters.interfaces.BoardPresenter;
-import game.lese.presenters.interfaces.GamePresenter;
-import game.lese.presenters.interfaces.HousePresenter;
 import game.lese.presenters.interfaces.MessagePresenter;
 
 /**

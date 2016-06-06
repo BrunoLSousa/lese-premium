@@ -8,7 +8,6 @@ package game.lese.house;
 import game.lese.board.DevelopmentPhase;
 import game.lese.board.PlayerBoard;
 import game.lese.outcome.HouseOutcome;
-import game.lese.presenters.interfaces.HousePresenter;
 
 /**
  *

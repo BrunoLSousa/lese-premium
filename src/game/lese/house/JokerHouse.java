@@ -18,25 +18,25 @@ import game.lese.presenters.console.ConsoleBoardPresenter;
 import game.lese.presenters.console.ConsoleJokerPresenter;
 import game.lese.presenters.interfaces.BoardPresenter;
 import game.lese.presenters.interfaces.JokerPresenter;
-import game.lese.question.JokerBoard;
+import game.lese.question.JokerInfo;
 
 /**
  *
  * @author cass
  */
 public class JokerHouse extends House {
-    private JokerBoard joker;
+    private JokerInfo joker;
     
-    public JokerHouse(int id, HouseOutcome outcome, DevelopmentPhase phase, JokerBoard j, int cycle) {
+    public JokerHouse(int id, HouseOutcome outcome, DevelopmentPhase phase, JokerInfo j, int cycle) {
         super(id, outcome, phase, cycle);
         this.joker = j;
     }
     
-    public JokerBoard getJoker() {
+    public JokerInfo getJoker() {
         return this.joker;
     }
     
-    public void setJoker(JokerBoard j) {
+    public void setJoker(JokerInfo j) {
         this.joker = j;
     }
 

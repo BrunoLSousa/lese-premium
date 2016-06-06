@@ -12,13 +12,13 @@ import java.util.Set;
  *
  * @author cass
  */
-public class QuestionBoard {
+public class QuestionInfo {
     private String description;
     private String explanation;
     private Set<String> choices;
     private String answer;
     
-    public QuestionBoard(String description, String explanation) {
+    public QuestionInfo(String description, String explanation) {
         this.description = description;
         this.explanation = explanation;
         this.choices = new HashSet<>();

@@ -10,7 +10,7 @@ import game.lese.house.House;
 import game.lese.house.QuestionHouse;
 import game.lese.model.Phase;
 import game.lese.model.Question;
-import game.lese.question.QuestionBoard;
+import game.lese.question.QuestionInfo;
 import java.util.List;
 
 /**
@@ -32,7 +32,7 @@ public interface QuestionPresenter {
      * @param question
      * @return 
      */
-    List<String> showChoices(QuestionBoard question);
+    List<String> showChoices(QuestionInfo question);
     
     /**
      * Obtains answer from the player

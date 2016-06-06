@@ -14,8 +14,8 @@ import game.lese.model.Question;
 import game.lese.outcome.BonusOutcome;
 import game.lese.outcome.HouseOutcome;
 import game.lese.outcome.PenalityOutcome;
-import game.lese.question.JokerBoard;
-import game.lese.question.QuestionBoard;
+import game.lese.question.JokerInfo;
+import game.lese.question.QuestionInfo;
 
 /**
  *
@@ -30,7 +30,7 @@ public abstract class ContentTemplate {
     public House refreshQuestion(House house){
         Question q = draftQuestion();
         HouseOutcome outcome = new BonusOutcome(q.getHouse(), q.getScore(), (float) 0.0);
-        QuestionBoard questionBoard = new QuestionBoard(q.getDescription(), q.getExplanation());
+        QuestionInfo questionBoard = new QuestionInfo(q.getDescription(), q.getExplanation());
         for(Answer answer : q.getAnswer()){
             questionBoard.addChoice(answer.getDescription(), (answer.getStatus().equals("1")));
         }
@@ -46,7 +46,7 @@ public abstract class ContentTemplate {
         }else{
             outcome = new PenalityOutcome(1, j.getScore());
         }
-        JokerBoard jokerBoard = new JokerBoard(j.getTitle(), j.getDescription());
+        JokerInfo jokerBoard = new JokerInfo(j.getTitle(), j.getDescription());
         JokerHouse jokerUpdated = new JokerHouse(house.getId(), outcome, house.getDevPhase(), jokerBoard, house.getCycle());
         return jokerUpdated;
     }

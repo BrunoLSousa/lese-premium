@@ -6,8 +6,6 @@
 package game.lese.board;
 
 import game.lese.house.House;
-import game.lese.presenters.console.ConsoleQuestionPresenter;
-import game.lese.presenters.interfaces.QuestionPresenter;
 
 /**
  *

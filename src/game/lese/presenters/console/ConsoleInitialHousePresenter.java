@@ -9,7 +9,6 @@ import game.lese.house.House;
 import game.lese.house.InitialHouse;
 import game.lese.presenters.interfaces.MessagePresenter;
 import game.lese.presenters.interfaces.ProjectPresenter;
-import java.util.Scanner;
 
 /**
  *

@@ -8,7 +8,6 @@ package game.lese.presenters.console;
 import game.lese.house.House;
 import game.lese.house.IntermediateHouse;
 import game.lese.presenters.interfaces.MessagePresenter;
-import java.util.Scanner;
 
 /**
  *

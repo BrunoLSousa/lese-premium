@@ -5,8 +5,8 @@
  */
 package game.lese.board;
 
-import game.lese.question.JokerBoard;
-import game.lese.question.QuestionBoard;
+import game.lese.question.JokerInfo;
+import game.lese.question.QuestionInfo;
 import game.lese.house.FinalHouse;
 import game.lese.outcome.BonusOutcome;
 import game.lese.outcome.HouseOutcome;
@@ -93,7 +93,7 @@ public class BoardBuilder {
     }
 
     public void buildQuestionHouse(DevelopmentPhase phase, int idHouse, int cycle) {
-        QuestionBoard q = new QuestionBoard("desc", "explanation");
+        QuestionInfo q = new QuestionInfo("desc", "explanation");
         q.addChoice("42", true);
         for (int j = 0; j < 3; j++) {
             q.addChoice(Integer.toString(j), false);
@@ -105,7 +105,7 @@ public class BoardBuilder {
     }
 
     public void buildJokerHouse(DevelopmentPhase phase, int idHouse, int cycle) {
-        JokerBoard j = new JokerBoard("title", "explanation");
+        JokerInfo j = new JokerInfo("title", "explanation");
         HouseOutcome outcome = new BonusOutcome(4, 3, (float) 1.0);
         House jokerHouse = new JokerHouse(idHouse, outcome, phase, j, cycle);
         this.board.addHouse(jokerHouse);

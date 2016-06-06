@@ -15,7 +15,7 @@ import game.lese.model.dao.AnswerDAO;
 import game.lese.model.dao.PhaseDAO;
 import game.lese.presenters.interfaces.BoardPresenter;
 import game.lese.presenters.interfaces.QuestionPresenter;
-import game.lese.question.QuestionBoard;
+import game.lese.question.QuestionInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -58,7 +58,7 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
     }
 
     @Override
-    public List<String> showChoices(QuestionBoard question) {
+    public List<String> showChoices(QuestionInfo question) {
         int option = 1;
         List<String> choices = new ArrayList<>();
         for (String choice : question.getChoices()) {
