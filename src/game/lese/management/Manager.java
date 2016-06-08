@@ -48,6 +48,7 @@ public class Manager {
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 BigInteger hash = new BigInteger(1, md.digest(data[1].getBytes()));
                 data[1] = String.format("%32X", hash);
+                data[1] = data[1].toLowerCase();
                 this.teacher = TeacherDAO.authentication(data);
             }
             teacherPresenter.showFeedbackAutentication(validation);
@@ -75,6 +76,7 @@ public class Manager {
                 if (data[1].equals(data[2])) {
                     hash = new BigInteger(1, md.digest(data[1].getBytes()));
                     String newPassword= String.format("%32X", hash);
+                    newPassword = newPassword.toLowerCase();
                     confirm = TeacherDAO.changePassword(t.getCpf(), newPassword);
                 }
             }
