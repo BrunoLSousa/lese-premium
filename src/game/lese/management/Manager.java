@@ -70,6 +70,7 @@ public class Manager {
             MessageDigest md = MessageDigest.getInstance("MD5");
             BigInteger hash = new BigInteger(1, md.digest(data[0].getBytes()));
             data[0] = String.format("%32X", hash);
+            data[0] = data[0].toLowerCase();
             Teacher t = TeacherDAO.validatePassword(this.teacher.getEmail(), data[0]);
             int confirm = 0;
             if (t != null) {

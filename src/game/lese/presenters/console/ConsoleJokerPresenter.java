@@ -42,7 +42,7 @@ public class ConsoleJokerPresenter implements JokerPresenter {
                 break;
         }
         System.out.println("Coringa - " + namePhase + "\n");
-        JokerHouse joker = (JokerHouse)house;
+        JokerHouse joker = (JokerHouse) house;
         if (joker.getOutcome() instanceof BonusOutcome) {
             System.out.println(joker.getJoker().getTitle() + "\n" + joker.getJoker().getDescription()
                     + "\nVocê ganhou " + joker.getOutcome().getPoints() + " pontos.\n");
@@ -56,7 +56,7 @@ public class ConsoleJokerPresenter implements JokerPresenter {
     public void showMessage(String feedback) {
         System.out.println(feedback + "\n");
     }
-    
+
     @Override
     public Joker getNewJoker() {
         Scanner scanner = new Scanner(System.in);
@@ -64,8 +64,6 @@ public class ConsoleJokerPresenter implements JokerPresenter {
         Joker joker = new Joker();
         Phase phase = getPhaseJokers();
         joker.setPhase(phase);
-        System.out.print("Digite o título do coringa: ");
-        joker.setTitle(scanner.nextLine());
         System.out.print("Digite a mensagem do coringa: ");
         joker.setDescription(scanner.nextLine());
         System.out.print("Digite a Pontuação da questão: ");
@@ -83,7 +81,23 @@ public class ConsoleJokerPresenter implements JokerPresenter {
             System.out.println("Phases:");
             int i = 1;
             for (Phase p : phases) {
-                System.out.printf("\t%d - %s\n", i, p.getName());
+                switch (p.getIdPhase()) {
+                    case 1:
+                        System.out.printf("\t%d - %s\n", i, "Requisitos");
+                        break;
+                    case 2:
+                        System.out.printf("\t%d - %s\n", i, "Projeto");
+                        break;
+                    case 3:
+                        System.out.printf("\t%d - %s\n", i, "Implementação");
+                        break;
+                    case 4:
+                        System.out.printf("\t%d - %s\n", i, "Teste");
+                        break;
+                    case 5:
+                        System.out.printf("\t%d - %s\n", i, "Implantação");
+                        break;
+                }
                 i++;
             }
             System.out.print("\nEscolha a phase do coringa:");
@@ -125,8 +139,8 @@ public class ConsoleJokerPresenter implements JokerPresenter {
         }
         return option.equals("s");
     }
-    
-    @Override 
+
+    @Override
     public Joker getJokerForEdit(List<Joker> allJokers) {
         Scanner scanner = new Scanner(System.in);
         int selectedJokerId;
@@ -134,54 +148,58 @@ public class ConsoleJokerPresenter implements JokerPresenter {
         for (Joker j : allJokers) {
             System.out.println(j.getIdJoker() + ": " + j.getDescription());
         }
-        
+
         System.out.println("Digite o ID do coringa que deseja editar:");
         System.out.println("(digite -1 para retornar ao menu anterior)");
         selectedJokerId = scanner.nextInt();
         if (selectedJokerId < 0) {
-            System.out.println("Retornando ao menu anterior"); 
+            System.out.println("Retornando ao menu anterior");
             return null;
         }
-        
-        for (Joker j: allJokers) {
+
+        for (Joker j : allJokers) {
             if (j.getIdJoker() == selectedJokerId) {
                 System.out.println("Editando coringa " + j.getIdJoker() + ": " + j.getTitle());
                 return j;
             }
         }
-        
-        System.out.println("Retornando ao menu anterior"); 
+
+        System.out.println("Retornando ao menu anterior");
         return null;
     }
 
     @Override
     public Joker editJoker(Joker selectedJoker) {
-          
+
         Scanner scanner = new Scanner(System.in);
-        String  userInput; 
+        String userInput;
         System.out.println("Pressione enter para manter os valores atuais");
-        System.out.print("Digite o titulo do coringa: ");
-        System.out.println("(titulo atual: " + selectedJoker.getTitle() + ")");
-        userInput = scanner.nextLine();
-        if (userInput.length() > 0) selectedJoker.setTitle(userInput);
         System.out.print("Digite a mensagem do coringa");
         System.out.println("(mensagem atual: " + selectedJoker.getDescription() + ")");
         userInput = scanner.nextLine();
-        if (userInput.length() > 0) selectedJoker.setDescription(userInput);
+        if (userInput.length() > 0) {
+            selectedJoker.setDescription(userInput);
+        }
         System.out.print("Digite a Pontuação do coringa: ");
-        System.out.println("(pontuação atual: " + selectedJoker.getScore()+ ")");
+        System.out.println("(pontuação atual: " + selectedJoker.getScore() + ")");
         userInput = scanner.nextLine();
-        if (userInput.length() > 0) selectedJoker.setScore(Integer.parseInt(userInput));
+        if (userInput.length() > 0) {
+            selectedJoker.setScore(Integer.parseInt(userInput));
+        }
         System.out.print("Digite a quantidade de casas válidas do coringa: ");
-        System.out.println("(quantidade atual: " + selectedJoker.getHouse()+ ")");
+        System.out.println("(quantidade atual: " + selectedJoker.getHouse() + ")");
         userInput = scanner.nextLine();
-        if (userInput.length() > 0) selectedJoker.setHouse(Integer.parseInt(userInput));
+        if (userInput.length() > 0) {
+            selectedJoker.setHouse(Integer.parseInt(userInput));
+        }
         System.out.print("Digite a fase do coringa: ");
-        System.out.println("(fase atual: " + selectedJoker.getPhase().getIdPhase()+ ")");
+        System.out.println("(fase atual: " + selectedJoker.getPhase().getIdPhase() + ")");
         userInput = scanner.nextLine();
-        if (userInput.length() > 0) selectedJoker.setPhase(new Phase(Integer
-                .parseInt(userInput)));
-        
+        if (userInput.length() > 0) {
+            selectedJoker.setPhase(new Phase(Integer
+                    .parseInt(userInput)));
+        }
+
         return selectedJoker;
     }
 

@@ -29,7 +29,10 @@ public class BoardBuilder {
     }
     
     public void buildProject(){
-        this.board.createProjectBoard("Projeto ABC", "Teste", 2);
+        String name = "Projeto Merci";
+        String description = "Apoio  informatizado  ao  controle  de  vendas  e  de  compras  da  mercearia  Pereira  &  Pereira Comercial Ltda";
+        int cycle = 2;
+        this.board.createProjectBoard(name, description, cycle);
     }
 
     public void buildHouses() {
