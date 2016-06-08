@@ -55,7 +55,16 @@ public class ConsoleGamePresenter implements GamePresenter {
 
     @Override
     public void showHelp() {
-        System.out.println("HELP");
+        System.out.println("O objetivo do jogo LeSE é ensinar o processo de desenvolvimento iterativo e incremental, através da\n"
+                + "aplicação de conceitos existentes na engenharia de software, por meio de perguntas e de situações que acontecem durante o jogo.\n"
+                + "A principal finalidade do jogo é criar uma estratégia complementar de ensino, onde os alunos deverão colocar\n"
+                + "em prática o conhecimento adquirido em sala de aula.\n\n"
+                + "Para iniciar o jogo, selecione a opção Jogar disponibilizada no menu inicial. Feito isso, o sistema solicitará que você\n"
+                + "informe o seu nome ou apelido. Ao iniciar o jogo, é exibida uma mensagem de boas vindas, seguida da descrição do projeto\n"
+                + "que ele irá participar. Durante o jogo, o jogador deve responder uma pergunta sorteada pelo jogo, sempre relacionada ao\n"
+                + "estágio em que o projeto se encontra no tabuleiro. As perguntas exibidas pertencem a um dos dois estilos: “múltipla escolha”\n"
+                + "ou “verdadeiro ou falso”. Se o aluno responder a pergunta corretamente ele ganha pontos e avança casas; caso responda de forma\n"
+                + "incorreta, perde pontos e retorna casas. O valor da pontuação é dada de acordo com o grau de dificuldade da questão.");
     }
 
     @Override
