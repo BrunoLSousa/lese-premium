@@ -6,8 +6,8 @@
 package game.lese.board;
 
 import game.lese.house.House;
+import game.lese.model.Project;
 import game.lese.model.dao.PlayerDAO;
-import game.lese.question.ProjectInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Board {
     private static Board instance;
     private List<House> houses;
     private final List<PlayerBoard> players;
-    private ProjectInfo project;
+    private Project project;
 
     private Board() {
         this.houses = new ArrayList<>();
@@ -90,11 +90,11 @@ public class Board {
         return null;
     }
 
-    public void setProject(ProjectInfo p) {
+    public void setProject(Project p) {
         this.project = p;
     }
 
-    public ProjectInfo getProject() {
+    public Project getProject() {
         return this.project;
     }
     

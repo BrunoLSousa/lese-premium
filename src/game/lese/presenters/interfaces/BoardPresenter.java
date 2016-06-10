@@ -40,7 +40,6 @@ public interface BoardPresenter {
     
     /**
      * Displays header's game.
-     * @param player a player object
      */
     void showHeaderGame();
     

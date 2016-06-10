@@ -11,34 +11,14 @@ package game.lese.model;
  */
 public class Project {
     
-    private int idProject = 0;
-    private String name = "";
-    private String description = "";
-    private int cycle = 0;
+    private String name;
+    private String description;
+    private int nCycles;
 
-    public Project() {
-        //constructor empty.
-    }
-
-    public Project(String newName, String newDescription, int newCycle) {
+    public Project(String newName, String newDescription, int numCycles) {
         this.name = newName;
         this.description = newDescription;
-        this.cycle = newCycle;
-    }
-
-    public Project(int newIdProject, String newName, String newDescription, int newCycle) {
-        this.idProject = newIdProject;
-        this.name = newName;
-        this.description = newDescription;
-        this.cycle = newCycle;
-    }
-
-    public int getCode() {
-        return idProject;
-    }
-
-    public void setCode(int newIdProject) {
-        this.idProject = newIdProject;
+        this.nCycles = numCycles;
     }
 
     public String getName() {
@@ -57,12 +37,12 @@ public class Project {
         this.description = newDescription;
     }
 
-    public int getCycle() {
-        return cycle;
+    public int getNumCycles() {
+        return nCycles;
     }
 
-    public void setCycle(int newCycle) {
-        this.cycle = newCycle;
+    public void setNumCycles(int cycles) {
+        this.nCycles = cycles;
     }
     
 }

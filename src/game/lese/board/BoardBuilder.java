@@ -15,7 +15,7 @@ import game.lese.house.InitialHouse;
 import game.lese.house.IntermediateHouse;
 import game.lese.house.QuestionHouse;
 import game.lese.house.JokerHouse;
-import game.lese.question.ProjectInfo;
+import game.lese.model.Project;
 
 /**
  *
@@ -35,7 +35,7 @@ public class BoardBuilder {
         String name = "Projeto Merci";
         String description = "Apoio  informatizado  ao  controle  de  vendas  e  de  compras  da  mercearia  Pereira  &  Pereira Comercial Ltda";
         int cycle = 2;
-        ProjectInfo p = new ProjectInfo(name, description, cycle);
+        Project p = new Project(name, description, cycle);
         this.board.setProject(p);
     }
 

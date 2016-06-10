@@ -6,8 +6,8 @@
 package game.lese.presenters.console;
 
 import game.lese.board.Board;
+import game.lese.model.Project;
 import game.lese.presenters.interfaces.ProjectPresenter;
-import game.lese.question.ProjectInfo;
 
 /**
  *
@@ -18,7 +18,7 @@ public class ConsoleProjectPresenter implements ProjectPresenter {
     @Override
     public void showProjects() {
         Board board = Board.getInstance();
-        ProjectInfo project = board.getProject();
+        Project project = board.getProject();
         System.out.println("\nVocê vai atuar no " + project.getName() + "\n" + "Descrição do Projeto: " + project.getDescription() + "\nNúmero de ciclos: " + project.getNumCycles());
     }
     

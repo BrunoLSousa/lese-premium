@@ -15,14 +15,10 @@ import game.lese.house.House;
 public abstract class HouseOutcome {
     private int points;
     private int nHouses;
-    private float extraPenalityPercentege;
     
-    //TODO(cass): we may have to do a condicional outcome because we may
-    //want to control outcomes that lead the player out of a phase in the board
     protected HouseOutcome(int points, int nHouses, float extraPenality) {
         this.points = points;
         this.nHouses = nHouses;
-        this.extraPenalityPercentege = extraPenality;
     }
         
     protected HouseOutcome(int points, int nHouses) {
