@@ -5,7 +5,6 @@
  */
 package game.lese.presenters.console;
 
-import game.lese.management.Manager;
 import game.lese.presenters.interfaces.GamePresenter;
 import game.lese.presenters.interfaces.TeacherPresenter;
 import java.io.Console;
@@ -33,16 +32,11 @@ public class ConsoleTeacherPresenter implements TeacherPresenter {
     }
 
     @Override
-    public void showFeedbackAutentication(boolean validation) {
-        if (validation) {
-            Manager teacher = Manager.getInstance();
-            if (teacher.isAutenticated()) {
-                System.out.println("\nAutenticação Realizada com sucesso!!!");
-            } else {
-                System.out.println("\nSenha incorreta!!!");
-            }
+    public void showFeedbackAutentication(boolean success) {
+        if (success) {
+            System.out.println("\nAutenticação Realizada com sucesso!!!");
         } else {
-            System.out.println("\nEmail Inválido!!!");
+            System.out.println("\nEmail ou senha incorretos!!!");
         }
     }
 

@@ -7,6 +7,9 @@ package game.lese.model.dao;
 
 import game.lese.connection.DBConnection;
 import game.lese.model.Teacher;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,11 +46,12 @@ public class TeacherDAO {
     public static Teacher authenticate(String email, String password){
         Connection connection = null;
         PreparedStatement ps = null;
-        try {
+        
+        try {            
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND t.password=? AND u.id_user=t.user");
             ps.setString(1, email);
-            ps.setString(2, password);
+            ps.setString(2, encodePassword(password));
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Teacher teacher = new Teacher();
@@ -59,63 +63,8 @@ public class TeacherDAO {
                 teacher.setPassword(rs.getString("password"));
                 return teacher;
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            DBConnection.closeConnection(connection, ps);
-        }
-        return null;
-    }
-    
-    public static boolean validateEmail(String email){
-        Connection connection = null;
-        PreparedStatement ps = null;
-        try {
-            connection = DBConnection.getConnection();
-            ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND u.id_user=t.user");
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                Teacher teacher = new Teacher();
-                teacher.setCpf(rs.getString("cpf"));
-                teacher.setEmail(rs.getString("email"));
-                teacher.setIdUser(rs.getInt("user"));
-                teacher.setInstitution(rs.getString("institution"));
-                teacher.setName(rs.getString("name"));
-                teacher.setPassword(rs.getString("password"));
-                return teacher != null;
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            DBConnection.closeConnection(connection, ps);
-        }
-        return false;
-    }
-    
-    public static Teacher validatePassword(String email, String password){
-        Connection connection = null;
-        PreparedStatement ps = null;
-        try {
-            connection = DBConnection.getConnection();
-            ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND t.password=? AND u.id_user=t.user");
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                Teacher teacher = new Teacher();
-                teacher.setCpf(rs.getString("cpf"));
-                teacher.setEmail(rs.getString("email"));
-                teacher.setIdUser(rs.getInt("user"));
-                teacher.setInstitution(rs.getString("institution"));
-                teacher.setName(rs.getString("name"));
-                teacher.setPassword(rs.getString("password"));
-                return teacher;
-            }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
         }
@@ -128,7 +77,7 @@ public class TeacherDAO {
         try {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("UPDATE teacher SET password=? WHERE cpf=?");
-            ps.setString(1, password);
+            ps.setString(1, encodePassword(password));
             ps.setString(2, cpf);
             return ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException ex) {
@@ -139,4 +88,16 @@ public class TeacherDAO {
         return 0;
     }
     
+    private static String encodePassword(String rawPassword) {
+        String encodedPassword = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            BigInteger hash = new BigInteger(1, md.digest(rawPassword.getBytes()));
+            encodedPassword = String.format("%32X", hash).toLowerCase();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            return encodedPassword;
+        }
+    } 
 }

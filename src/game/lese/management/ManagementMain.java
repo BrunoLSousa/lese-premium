@@ -19,45 +19,42 @@ public class ManagementMain {
     
     public ManagementMain() {
         teacherPresenter = new ConsoleTeacherPresenter();
-        teacherBoard = Manager.getInstance();
+        teacherBoard = new Manager();
     }
     
     public void showMenu() {
-
-        if(this.teacherBoard.autenticate()){
-            Management management;
-            int opcao;
-            do {
-                opcao = teacherPresenter.showMenu();
-                switch (opcao) {
-                    case 1:
-                        management = new ManagementQuestion();
-                        management.create();
-                        break;
-                    case 2:
-                        management = new ManagementQuestion();
-                        management.alter();
-                        break;
-                    case 3:
-                        management = new ManagementJoker();
-                        management.create();
-                        break;
-                    case 4:
-                        management = new ManagementJoker();
-                        management.alter();
-                        break;
-                    case 5:
-                        this.teacherBoard.changePassword();
-                        break;
-                    case 6:
-                        this.teacherBoard.logout();
-                        teacherPresenter.showExitRestrictedArea();
-                        break;
-                    default:
-                        teacherPresenter.showDefault();
-                        break;
-                }
-            } while (this.teacherBoard.isAutenticated());
+        this.teacherBoard.logIn();
+        Management management;
+        
+        while (this.teacherBoard.isAuthenticated()) {
+            switch (teacherPresenter.showMenu()) {
+                case 1:
+                    management = new ManagementQuestion();
+                    management.create();
+                    break;
+                case 2:
+                    management = new ManagementQuestion();
+                    management.alter();
+                    break;
+                case 3:
+                    management = new ManagementJoker();
+                    management.create();
+                    break;
+                case 4:
+                    management = new ManagementJoker();
+                    management.alter();
+                    break;
+                case 5:
+                    this.teacherBoard.changePassword();
+                    break;
+                case 6:
+                    this.teacherBoard.logout();
+                    teacherPresenter.showExitRestrictedArea();
+                    break;
+                default:
+                    teacherPresenter.showDefault();
+                    break;
+           }
         }
     }
 }
