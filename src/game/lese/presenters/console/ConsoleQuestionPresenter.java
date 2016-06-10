@@ -227,7 +227,7 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
         int selectedQuestionId;
         System.out.println("\n\nQUESTÕES CADASTRADAS: ");
         for (Question q : questions) {
-            System.out.println(q.getIdQueston() + ": " + q.getDescription());
+            System.out.println(q.getQuestionId() + ": " + q.getDescription());
         }
 
         System.out.print("\n\nDigite o ID da questão que deseja editar (digite -1 para retornar ao menu anterior): ");
@@ -238,8 +238,8 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
         }
 
         for (Question q : questions) {
-            if (q.getIdQueston() == selectedQuestionId) {
-                System.out.println("Editando questão " + q.getIdQueston() + ": " + q.getDescription());
+            if (q.getQuestionId() == selectedQuestionId) {
+                System.out.println("Editando questão " + q.getQuestionId() + ": " + q.getDescription());
                 return q;
             }
         }
@@ -291,7 +291,7 @@ public class ConsoleQuestionPresenter implements QuestionPresenter {
         //EDITING ANSWERS RELATED TO THIS QUESTION
         do {
             System.out.print("\nDeseja editar as respostas desta pergunta? [s/n]");
-            List<Answer> allAnswers = AnswerDAO.selectAnswerPerIdQuestion(question.getIdQueston());
+            List<Answer> allAnswers = AnswerDAO.selectAnswerPerQuestionId(question.getQuestionId());
             option = scanner.nextLine();
             if (option.length() == 0 || option.startsWith("s")) {
                 System.out.println("Lista de respostas: ");

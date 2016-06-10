@@ -30,9 +30,7 @@ public class PhaseDAO {
             ps = connection.prepareStatement("INSERT INTO phase(name) VALUES(?)");
             ps.setString(1, phase.getName());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -47,7 +45,7 @@ public class PhaseDAO {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("SELECT * FROM phase ORDER BY id_phase ASC");
             ResultSet rs = ps.executeQuery();
-            List<Phase> listPhase = new ArrayList<Phase>();
+            List<Phase> listPhase = new ArrayList<>();
             while(rs.next()){
                 Phase phase = new Phase();
                 phase.setIdPhase(rs.getInt("id_phase"));
@@ -55,9 +53,7 @@ public class PhaseDAO {
                 listPhase.add(phase);
             }
             return listPhase;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -79,9 +75,7 @@ public class PhaseDAO {
                 phase.setIdPhase(rs.getInt("id_phase"));
                 phase.setName(rs.getString("name"));
             }            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);

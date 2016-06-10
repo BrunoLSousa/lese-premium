@@ -44,12 +44,12 @@ public class Question {
         this.answer = newAnswer;
     }
 
-    public int getIdQueston() {
+    public int getQuestionId() {
         return idQuestion;
     }
 
-    public void setIdQueston(int newIdQuestion) {
-        this.idQuestion = newIdQuestion;
+    public void setQuestionId(int newQuestionId) {
+        this.idQuestion = newQuestionId;
     }
 
     public String getDescription() {

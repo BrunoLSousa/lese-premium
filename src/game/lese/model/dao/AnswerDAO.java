@@ -28,13 +28,11 @@ public class AnswerDAO {
         try {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("INSERT INTO answer(question, description, status) VALUES(?, ?, ?)");
-            ps.setInt(1, answer.getQuestion().getIdQueston());
+            ps.setInt(1, answer.getQuestion().getQuestionId());
             ps.setString(2, answer.getDescription());
             ps.setString(3, answer.getStatus());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -48,14 +46,12 @@ public class AnswerDAO {
         try {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("UPDATE answer SET question = ?, description = ?, status = ? WHERE id_answer = ?");
-            ps.setInt(1, answer.getQuestion().getIdQueston());
+            ps.setInt(1, answer.getQuestion().getQuestionId());
             ps.setString(2, answer.getDescription());
             ps.setString(3, answer.getStatus());
             ps.setInt(4, answer.getIdAnswer());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -71,9 +67,7 @@ public class AnswerDAO {
             ps = connection.prepareStatement("DELETE FROM answer WHERE id_answer = ?");
             ps.setInt(1, answer.getIdAnswer());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -81,14 +75,14 @@ public class AnswerDAO {
         return 0;
     }
     
-    public static List<Answer> selectAnswerPerIdQuestion(int idQuestion){
+    public static List<Answer> selectAnswerPerQuestionId(int QuestionId){
         Connection connection = null;
         PreparedStatement ps = null;
         List<Answer> listAnswers = new ArrayList<>();
         try {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("SELECT * FROM answer WHERE question=?");
-            ps.setInt(1, idQuestion);
+            ps.setInt(1, QuestionId);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Answer answer = new Answer();
@@ -97,9 +91,7 @@ public class AnswerDAO {
                 answer.setStatus(rs.getString("status"));
                 listAnswers.add(answer);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);

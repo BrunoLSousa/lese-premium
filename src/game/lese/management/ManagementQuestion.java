@@ -25,7 +25,7 @@ public class ManagementQuestion implements Management {
         Question question = questionPresenter.getNewQuestion();
         if (questionPresenter.confirmResgisterQuestion()) {
             int idQuestion = QuestionDAO.createQuestion(question);
-            question.setIdQueston(idQuestion);
+            question.setQuestionId(idQuestion);
             for (Answer a : question.getAnswer()) {
                 a.setQuestion(question);
                 AnswerDAO.createAnswer(a);

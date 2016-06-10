@@ -52,8 +52,7 @@ public class BoardGame {
         
         for (int i = 1; i <= amountPlayers; i++) {
             String playerName = playerPresenter.getPlayerName(i);
-            //TODO(cass): set diferent colors for each player
-            this.board.addPlayer(playerName, "red");
+            this.board.addPlayer(playerName);
         }
         gamePresenter.cleanConsole();
     }

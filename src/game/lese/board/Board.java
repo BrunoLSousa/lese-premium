@@ -19,7 +19,7 @@ public class Board {
 
     private static Board instance;
     private List<House> houses;
-    private List<PlayerBoard> players;
+    private final List<PlayerBoard> players;
     private ProjectInfo project;
 
     private Board() {
@@ -46,7 +46,7 @@ public class Board {
         return this.houses.size() - 1;
     }
 
-    public void addPlayer(String nickname, String pawnColor) {
+    public void addPlayer(String nickname) {
         this.players.add(new PlayerBoard(nickname));
     }
 
@@ -64,7 +64,7 @@ public class Board {
 
     public void storePlayers() {
         for (PlayerBoard p : this.players) {
-            new PlayerDAO().createPlayer(p);
+            PlayerDAO.createPlayer(p);
         }
     }
 

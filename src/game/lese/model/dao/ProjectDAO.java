@@ -29,9 +29,7 @@ public class ProjectDAO {
             ps.setString(2, project.getDescription());
             ps.setInt(3, project.getCycle());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);

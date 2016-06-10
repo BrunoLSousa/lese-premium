@@ -29,9 +29,7 @@ public class UserDAO {
             ps = connection.prepareStatement("INSERT INTO user(name) VALUES(?)");
             ps.setString(1, user.getName());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             DBConnection.closeConnection(connection, ps);
@@ -52,9 +50,7 @@ public class UserDAO {
             rs.next();
             int idUser = rs.getInt(1);
             return idUser;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             DBConnection.closeConnection(connection, ps);

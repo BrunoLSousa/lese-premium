@@ -5,8 +5,6 @@
  */
 package game.lese.board;
 
-import game.lese.house.House;
-
 /**
  *
  * @author cass
@@ -15,25 +13,18 @@ public class PlayerBoard {
 
     private final String nickname;
     private int accumulatedPoints;
-    private final Pawn pawn;
     private int currentPos;
     private int currentCycle;
 
     public PlayerBoard(String nickname) {
         this.nickname = nickname;
         this.accumulatedPoints = 0;
-        this.pawn = new Pawn("red");
         this.currentPos = 0;
         this.currentCycle = 1;
     }
 
     public String getNickname() {
         return this.nickname;
-    }
-
-    public House getPawnPosition() {
-        Board board = Board.getInstance();
-        return board.getPlayerHouse(this);
     }
 
     public int getCurrentPos() {
@@ -62,7 +53,7 @@ public class PlayerBoard {
         }
     }
 
-    public void increasingCycle() {
+    public void increaseCycle() {
         this.currentCycle = this.currentCycle + 1;
     }
 

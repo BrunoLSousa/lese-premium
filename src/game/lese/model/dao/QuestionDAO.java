@@ -40,9 +40,7 @@ public class QuestionDAO {
             rs.next();
             int idQuestion = rs.getInt(1);
             return idQuestion;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -61,11 +59,9 @@ public class QuestionDAO {
             ps.setString(3, question.getExplanation());
             ps.setInt(4, question.getScore());
             ps.setInt(5, question.getHouse());
-            ps.setInt(6, question.getIdQueston());
+            ps.setInt(6, question.getQuestionId());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -83,18 +79,16 @@ public class QuestionDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Question question = new Question();
-                question.setIdQueston(rs.getInt("id_question"));
+                question.setQuestionId(rs.getInt("id_question"));
                 question.setPhase(new Phase(rs.getInt("phase")));
                 question.setDescription(rs.getString("description"));
                 question.setExplanation(rs.getString("explanation"));
                 question.setScore(rs.getInt("score"));
                 question.setHouse(rs.getInt("house"));
-                question.setAnswer(AnswerDAO.selectAnswerPerIdQuestion(question.getIdQueston()));
+                question.setAnswer(AnswerDAO.selectAnswerPerQuestionId(question.getQuestionId()));
                 listQuestions.add(question);
             }            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -113,18 +107,16 @@ public class QuestionDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Question question = new Question();
-                question.setIdQueston(rs.getInt("id_question"));
+                question.setQuestionId(rs.getInt("id_question"));
                 question.setPhase(phase);
                 question.setDescription(rs.getString("description"));
                 question.setExplanation(rs.getString("explanation"));
                 question.setScore(rs.getInt("score"));
                 question.setHouse(rs.getInt("house"));
-                question.setAnswer(new AnswerDAO().selectAnswerPerIdQuestion(question.getIdQueston()));
+                question.setAnswer(AnswerDAO.selectAnswerPerQuestionId(question.getQuestionId()));
                 listQuestions.add(question);
             }            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);

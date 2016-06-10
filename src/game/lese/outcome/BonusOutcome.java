@@ -37,7 +37,7 @@ public class BonusOutcome extends HouseOutcome {
             }
         } else {
             if (house instanceof IntermediateHouse) {
-                p.increasingCycle();
+                p.increaseCycle();
             }
             p.creditPoints(getPoints());
             p.move(getNumberOfHouses());

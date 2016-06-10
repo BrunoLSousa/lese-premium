@@ -32,9 +32,7 @@ public class TeacherDAO {
             ps.setString(4, teacher.getEmail());
             ps.setString(5, teacher.getPassword());
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -42,14 +40,14 @@ public class TeacherDAO {
         return 0;
     }
     
-    public static Teacher authentication(String[] data){
+    public static Teacher authenticate(String email, String password){
         Connection connection = null;
         PreparedStatement ps = null;
         try {
             connection = DBConnection.getConnection();
             ps = connection.prepareStatement("SELECT * FROM teacher t JOIN user u WHERE t.email=? AND t.password=? AND u.id_user=t.user");
-            ps.setString(1, data[0]);
-            ps.setString(2, data[1]);
+            ps.setString(1, email);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Teacher teacher = new Teacher();
@@ -61,9 +59,7 @@ public class TeacherDAO {
                 teacher.setPassword(rs.getString("password"));
                 return teacher;
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -118,9 +114,7 @@ public class TeacherDAO {
                 teacher.setPassword(rs.getString("password"));
                 return teacher;
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);
@@ -137,9 +131,7 @@ public class TeacherDAO {
             ps.setString(1, password);
             ps.setString(2, cpf);
             return ps.executeUpdate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             DBConnection.closeConnection(connection, ps);

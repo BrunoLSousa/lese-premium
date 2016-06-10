@@ -43,13 +43,13 @@ public class Manager {
         try {
             TeacherPresenter teacherPresenter = new ConsoleTeacherPresenter();
             String[] data = teacherPresenter.getAutentication();
-            boolean validation = TeacherDAO.validateEmail(data[0]);
+            String email = data[0];
+            boolean validation = TeacherDAO.validateEmail(email);
             if (validation) {
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 BigInteger hash = new BigInteger(1, md.digest(data[1].getBytes()));
-                data[1] = String.format("%32X", hash);
-                data[1] = data[1].toLowerCase();
-                this.teacher = TeacherDAO.authentication(data);
+                String password = String.format("%32X", hash).toLowerCase();
+                this.teacher = TeacherDAO.authenticate(email, password);
             }
             teacherPresenter.showFeedbackAutentication(validation);
             return (this.teacher != null);
