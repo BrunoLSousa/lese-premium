@@ -26,6 +26,7 @@ public class Manager {
     }
 
     public boolean logIn() {
+        
         //email:teste@teste.com senha: 123456 
         TeacherPresenter teacherPresenter = new ConsoleTeacherPresenter();
         String[] data = teacherPresenter.getAutentication();

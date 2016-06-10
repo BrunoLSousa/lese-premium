@@ -64,10 +64,10 @@ public class ContentTransition extends ContentTemplate{
     }
 
     private void completeListQuestions() {
-        this.questionTransition = new QuestionDAO().selectQuestionPerPhase(this.phase);
+        this.questionTransition = QuestionDAO.selectQuestionPerPhase(this.phase);
     }
 
     private void completeListJokers() {
-        this.jokerTransition = new JokerDAO().selectJokersPerPhase(this.phase);
+        this.jokerTransition = JokerDAO.selectJokersPerPhase(this.phase);
     }
 }

@@ -64,10 +64,10 @@ public class ContentVerification extends ContentTemplate{
     }
 
     private void completeListQuestions() {
-        this.questionVerification = new QuestionDAO().selectQuestionPerPhase(this.phase);
+        this.questionVerification = QuestionDAO.selectQuestionPerPhase(this.phase);
     }
 
     private void completeListJokers() {
-        this.jokerVerification = new JokerDAO().selectJokersPerPhase(this.phase);
+        this.jokerVerification = JokerDAO.selectJokersPerPhase(this.phase);
     }
 }

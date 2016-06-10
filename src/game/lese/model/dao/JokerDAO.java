@@ -95,7 +95,7 @@ public class JokerDAO {
         return listJoker;
     }
     
-    public List<Joker> selectJokersPerPhase(Phase phase){
+    public static List<Joker> selectJokersPerPhase(Phase phase){
         Connection connection = null;
         PreparedStatement ps = null;
         List<Joker> listJoker = new ArrayList<>();

@@ -43,9 +43,7 @@ public class ContentConstruction extends ContentTemplate{
             completeListQuestions();
         }
         int indexQuestion = getRandomNumber(this.questionConstruction.size());
-        Question question = this.questionConstruction.get(indexQuestion);
-        this.questionConstruction.remove(indexQuestion);
-        return question;
+        return this.questionConstruction.remove(indexQuestion);
     }
 
     @Override
@@ -54,9 +52,7 @@ public class ContentConstruction extends ContentTemplate{
             completeListJokers();
         }
         int indexJoker = getRandomNumber(this.jokerConstruction.size());
-        Joker joker = this.jokerConstruction.get(indexJoker);
-        this.jokerConstruction.remove(indexJoker);
-        return joker;
+        return this.jokerConstruction.remove(indexJoker);
     }
 
     private int getRandomNumber(int limit) {
@@ -64,10 +60,10 @@ public class ContentConstruction extends ContentTemplate{
     }
 
     private void completeListQuestions() {
-        this.questionConstruction = new QuestionDAO().selectQuestionPerPhase(this.phase);
+        this.questionConstruction = QuestionDAO.selectQuestionPerPhase(this.phase);
     }
 
     private void completeListJokers() {
-        this.jokerConstruction = new JokerDAO().selectJokersPerPhase(this.phase);
+        this.jokerConstruction = JokerDAO.selectJokersPerPhase(this.phase);
     }
 }

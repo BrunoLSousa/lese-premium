@@ -43,9 +43,7 @@ public class ContentElaboration extends ContentTemplate {
             completeListQuestions();
         }
         int indexQuestion = getRandomNumber(this.questionElaboration.size());
-        Question question = this.questionElaboration.get(indexQuestion);
-        this.questionElaboration.remove(indexQuestion);
-        return question;
+        return this.questionElaboration.remove(indexQuestion);
     }
 
     @Override
@@ -54,9 +52,7 @@ public class ContentElaboration extends ContentTemplate {
             completeListJokers();
         }
         int indexJoker = getRandomNumber(this.jokerElaboration.size());
-        Joker joker = this.jokerElaboration.get(indexJoker);
-        this.jokerElaboration.remove(indexJoker);
-        return joker;
+        return this.jokerElaboration.remove(indexJoker);
     }
 
     private int getRandomNumber(int limit) {
@@ -64,11 +60,11 @@ public class ContentElaboration extends ContentTemplate {
     }
 
     private void completeListQuestions() {
-        this.questionElaboration = new QuestionDAO().selectQuestionPerPhase(this.phase);
+        this.questionElaboration = QuestionDAO.selectQuestionPerPhase(this.phase);
     }
 
     private void completeListJokers() {
-        this.jokerElaboration = new JokerDAO().selectJokersPerPhase(this.phase);
+        this.jokerElaboration = JokerDAO.selectJokersPerPhase(this.phase);
     }
 
 }

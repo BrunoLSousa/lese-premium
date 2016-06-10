@@ -90,11 +90,11 @@ public class Board {
         return null;
     }
 
-    public void createProjectBoard(String name, String description, int cycle) {
-        this.project = new ProjectInfo(name, description, cycle);
+    public void setProject(ProjectInfo p) {
+        this.project = p;
     }
 
-    public ProjectInfo getProjectBoard() {
+    public ProjectInfo getProject() {
         return this.project;
     }
     

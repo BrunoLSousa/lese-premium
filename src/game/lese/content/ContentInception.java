@@ -64,11 +64,11 @@ public class ContentInception extends ContentTemplate{
     }
     
     private void completeListQuestions(){
-        this.questionInception = new QuestionDAO().selectQuestionPerPhase(this.phase);
+        this.questionInception = QuestionDAO.selectQuestionPerPhase(this.phase);
     }
     
     private void completeListJokers(){
-        this.jokerInception = new JokerDAO().selectJokersPerPhase(this.phase);
+        this.jokerInception = JokerDAO.selectJokersPerPhase(this.phase);
     }
     
 }

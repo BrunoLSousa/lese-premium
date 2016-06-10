@@ -15,6 +15,7 @@ import game.lese.house.InitialHouse;
 import game.lese.house.IntermediateHouse;
 import game.lese.house.QuestionHouse;
 import game.lese.house.JokerHouse;
+import game.lese.question.ProjectInfo;
 
 /**
  *
@@ -29,17 +30,20 @@ public class BoardBuilder {
     }
     
     public void buildProject(){
+        
+        //TODO: store project in the database
         String name = "Projeto Merci";
         String description = "Apoio  informatizado  ao  controle  de  vendas  e  de  compras  da  mercearia  Pereira  &  Pereira Comercial Ltda";
         int cycle = 2;
-        this.board.createProjectBoard(name, description, cycle);
+        ProjectInfo p = new ProjectInfo(name, description, cycle);
+        this.board.setProject(p);
     }
 
     public void buildHouses() {
 
         int nHousesPerPhase = 6;
         int idHouse = 0;
-        int developmentCycles = this.board.getProjectBoard().getNumCycles();
+        int developmentCycles = this.board.getProject().getNumCycles();
         for (int cycle = 1; cycle <= developmentCycles; cycle++) {
             for (DevelopmentPhase phase : DevelopmentPhase.values()) {
                 for (int i = 1; i <= nHousesPerPhase; i++) {
@@ -66,7 +70,7 @@ public class BoardBuilder {
         }
     }
 
-    public void buildInitialHouse(int idHouse, int cycle) {
+    private void buildInitialHouse(int idHouse, int cycle) {
         String message = "Parabéns! \nVocê acaba de ser contratado pela empresa XYZ para trabalhar como engenheiro de software. "
                 + "Prepare-se, muitos desafios estão por vir. Novos conhecimentos serão obtidos e muitos obstáculos serão encontrados. "
                 + "Mas fique tranquilo. No final tudo isso valerá apenas.\n\n"
@@ -77,7 +81,7 @@ public class BoardBuilder {
         this.board.addHouse(initHouse);
     }
 
-    public void buildIntermediateHouse(int idHouse, int cycle) {
+    private void buildIntermediateHouse(int idHouse, int cycle) {
         String message = "Parabéns! \nVocê acaba de finalizar o ciclo "+cycle+" de desenvolvimento do software.\n\n"
                 + "Prepare-se, agora para o inicio do ciclo "+ (cycle+1) + ".";
 
@@ -86,7 +90,7 @@ public class BoardBuilder {
         this.board.addHouse(intermediateHouse);
     }
 
-    public void buildFinalHouse(int idHouse, int cycle) {
+    private void buildFinalHouse(int idHouse, int cycle) {
         String message = "Parabéns! \nVocê completou todos os ciclos de desenvolvimento do software.\n\n"
                 + "Fim do jogo.";
 
@@ -95,7 +99,7 @@ public class BoardBuilder {
         this.board.addHouse(finalHouse);
     }
 
-    public void buildQuestionHouse(DevelopmentPhase phase, int idHouse, int cycle) {
+    private void buildQuestionHouse(DevelopmentPhase phase, int idHouse, int cycle) {
         QuestionInfo q = new QuestionInfo("desc", "explanation");
         q.addChoice("42", true);
         for (int j = 0; j < 3; j++) {
@@ -107,7 +111,7 @@ public class BoardBuilder {
         this.board.addHouse(questionHouse);
     }
 
-    public void buildJokerHouse(DevelopmentPhase phase, int idHouse, int cycle) {
+    private void buildJokerHouse(DevelopmentPhase phase, int idHouse, int cycle) {
         JokerInfo j = new JokerInfo("title", "explanation");
         HouseOutcome outcome = new BonusOutcome(4, 3, (float) 1.0);
         House jokerHouse = new JokerHouse(idHouse, outcome, phase, j, cycle);
