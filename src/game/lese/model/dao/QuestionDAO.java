@@ -96,7 +96,7 @@ public class QuestionDAO {
         return listQuestions;
     }
     
-    public static List<Question> selectQuestionPerPhase(Phase phase){
+    public static List<Question> selectQuestionsPerPhase(Phase phase){
         Connection connection = null;
         PreparedStatement ps = null;
         List<Question> listQuestions = new ArrayList<>();

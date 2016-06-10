@@ -3,29 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.lese.content;
+package game.lese.house;
 
-import game.lese.house.House;
-import game.lese.house.JokerHouse;
-import game.lese.house.QuestionHouse;
+import game.lese.board.DevelopmentPhase;
 import game.lese.model.Answer;
 import game.lese.model.Joker;
+import game.lese.model.Phase;
 import game.lese.model.Question;
+import game.lese.model.dao.JokerDAO;
+import game.lese.model.dao.PhaseDAO;
+import game.lese.model.dao.QuestionDAO;
 import game.lese.outcome.BonusOutcome;
 import game.lese.outcome.HouseOutcome;
 import game.lese.outcome.PenalityOutcome;
 import game.lese.question.JokerInfo;
 import game.lese.question.QuestionInfo;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author bruno
  */
-public abstract class ContentTemplate {
-
-    public abstract Question draftQuestion();
-
-    public abstract Joker draftJoker();
+public class ContentTemplate {
+    private List<Question> questions;
+    private List<Joker> jokers;
+    private Phase phase;
+    
+    public ContentTemplate(DevelopmentPhase devPhase) {
+        questions = new ArrayList<>();
+        jokers = new ArrayList<>();
+        phase = new PhaseDAO().selectPhasePerName(devPhase.toString());
+    }
     
     public House refreshQuestion(House house){
         Question q = draftQuestion();
@@ -50,5 +59,32 @@ public abstract class ContentTemplate {
         JokerHouse jokerUpdated = new JokerHouse(house.getId(), outcome, house.getDevPhase(), jokerBoard, house.getCycle());
         return jokerUpdated;
     }
+    
+    private Question draftQuestion() {
+        if (this.questions.isEmpty()) {
+            completeListQuestions();
+        }
+        int indexQuestion = getRandomNumber(this.questions.size());
+        return this.questions.remove(indexQuestion);
+    }
 
+    private Joker draftJoker() {
+        if (this.jokers.isEmpty()) {
+            completeListJokers();
+        }
+        int indexJoker = getRandomNumber(this.jokers.size());
+        return this.jokers.remove(indexJoker);
+    }
+    
+    private static int getRandomNumber(int limit){
+        return (int)(limit*Math.random());
+    }
+    
+    private void completeListQuestions(){
+        this.questions = QuestionDAO.selectQuestionsPerPhase(this.phase);
+    }
+    
+    private void completeListJokers(){
+        this.jokers = JokerDAO.selectJokersPerPhase(this.phase);
+    }
 }

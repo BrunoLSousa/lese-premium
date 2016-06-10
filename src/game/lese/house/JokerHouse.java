@@ -7,12 +7,6 @@ package game.lese.house;
 
 import game.lese.board.DevelopmentPhase;
 import game.lese.board.PlayerBoard;
-import game.lese.content.ContentConstruction;
-import game.lese.content.ContentElaboration;
-import game.lese.content.ContentInception;
-import game.lese.content.ContentTemplate;
-import game.lese.content.ContentTransition;
-import game.lese.content.ContentVerification;
 import game.lese.outcome.HouseOutcome;
 import game.lese.presenters.console.ConsoleBoardPresenter;
 import game.lese.presenters.console.ConsoleJokerPresenter;
@@ -42,24 +36,7 @@ public class JokerHouse extends House {
 
     @Override
     protected void presentContent() {
-        ContentTemplate contentTemplate = null;
-        switch(getDevPhase()){
-            case Inception:
-                contentTemplate = ContentInception.getInstance();
-                break;
-            case Elaboration:
-                contentTemplate = ContentElaboration.getInstance();
-                break;
-            case Construction:
-                contentTemplate = ContentConstruction.getInstance();
-                break;
-            case Verification:
-                contentTemplate = ContentVerification.getInstance();
-                break;
-            case Transition:
-                contentTemplate = ContentTransition.getInstance();
-                break;
-        }
+        ContentTemplate contentTemplate = new ContentTemplate(getDevPhase());
         House houseUpdated = contentTemplate.refreshJoker(this);
         updateContent(houseUpdated);
     }
