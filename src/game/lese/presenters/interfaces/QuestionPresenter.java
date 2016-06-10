@@ -8,7 +8,6 @@ package game.lese.presenters.interfaces;
 import game.lese.board.PlayerBoard;
 import game.lese.house.House;
 import game.lese.house.QuestionHouse;
-import game.lese.model.Phase;
 import game.lese.model.Question;
 import game.lese.question.QuestionInfo;
 import java.util.List;

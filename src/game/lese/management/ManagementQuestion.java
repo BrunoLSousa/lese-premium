@@ -31,27 +31,29 @@ public class ManagementQuestion implements Management {
                 AnswerDAO.createAnswer(a);
             }
             questionPresenter.showMessage("Questão cadastrada com sucesso!!!");
+        } else {
+            questionPresenter.showMessage("Error ao criar questão. Tente Novamente");
         }
     }
 
     @Override
-    public void alter() {
-       QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
+    public void alter() { 
+        List<Question> allQuestions = QuestionDAO.selectAllQuestions();
+        QuestionPresenter questionPresenter = new ConsoleQuestionPresenter();
+        Question selectedQuestion = questionPresenter.getQuestionForEdit(allQuestions);
        
-       List<Question> allQuestions = QuestionDAO.selectAllQuestions();
-       Question selectedQuestion = questionPresenter.getQuestionForEdit(allQuestions);
-       
-       if (selectedQuestion == null) return;
-         
-       Question result = questionPresenter.editQuestion(selectedQuestion);
-
-       if (result == null) return;
-       
-       QuestionDAO.updateQuestion(result);
-       
-       questionPresenter.showMessage("Questão atualizada com sucesso.");
-       
+        String infoMsg = "Error ao atualizar questão. Tente Novamente";
         
+        if (selectedQuestion != null) {
+            Question result = questionPresenter.editQuestion(selectedQuestion);
+            
+            if (result != null) {
+                QuestionDAO.updateQuestion(result);
+                infoMsg = "Questão atualizado com sucessos";
+            }
+        }
+        
+        questionPresenter.showMessage(infoMsg);
     }
 
 }

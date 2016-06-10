@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author bruno
  */
-public class ManagementJoker implements Management{
+public class ManagementJoker implements Management {
 
     @Override
     public void create() {
@@ -24,25 +24,28 @@ public class ManagementJoker implements Management{
         if (jokerPresenter.confirmResgisterJoker()) {
             JokerDAO.createJoker(joker);
             jokerPresenter.showMessage("Coringa cadastrado com sucesso!!!");
+        } else {
+            jokerPresenter.showMessage("Error ao criar curinga. Tente Novamente");
         }
     }
 
     @Override
     public void alter() { 
-        JokerPresenter jokerPresenter = new ConsoleJokerPresenter();
-        
         List<Joker> allJokers = JokerDAO.selectAllJokers();
+        JokerPresenter jokerPresenter = new ConsoleJokerPresenter();
         Joker selectedJoker = jokerPresenter.getJokerForEdit(allJokers);
+        String infoMsg = "Error ao atualizar curinga. Tente Novamente";
         
-        if (selectedJoker == null) return;
+        if (selectedJoker != null) {
+            Joker result = jokerPresenter.editJoker(selectedJoker);
+            
+            if (result != null) {
+                JokerDAO.updateJoker(result);
+                infoMsg = "Coringa atualizado com sucessos";
+            }
+        }
         
-        Joker result = jokerPresenter.editJoker(selectedJoker);
-        
-        if (result == null) return;
-        
-        JokerDAO.updateJoker(result);
-        
-        jokerPresenter.showMessage("Coringa atualizado com sucessos");
+        jokerPresenter.showMessage(infoMsg);
     }
     
 }
