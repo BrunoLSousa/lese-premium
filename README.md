@@ -50,3 +50,7 @@ o conhecimento adquirido em sala de aula.
 ##Links
 
 Documentação do projeto (interna): [https://drive.google.com/drive/u/0/folders/0Bwh9aOxWxop7VDZvaDdHUG11UVU]
+
+## Senha padrão de administrador
++ Email: teste@teste.com
++ Senha: 123456
