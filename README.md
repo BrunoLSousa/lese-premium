@@ -86,7 +86,7 @@ Para a configuração dos produtos, siga os seguintes passos:
 * Neste arquivo existem duas variáveis nomeadas como: PROJECT_MANAGMENT e MULTIPLAYER. Essas variável controlam as features
 opcionais desta linha de produto. Troque o valor dessas variáveis para true ou false para configurar um produto diferente.
 
-*Após trocar os valores dessas variáveis salve as alterações no arquivos e limpa e construa o projeto para que seja compilado o seu produto.
+* Após trocar os valores dessas variáveis salve as alterações no arquivos e limpa e construa o projeto para que seja compilado o seu produto.
 
 * Após limpar e construir o projeto pelo Netbeans, vá na pasta raiz do projeto e localize o arquivo lese.sqlite. 
 Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já existente dentro dessa pasta com o mesmo nome, subtitua-o;
