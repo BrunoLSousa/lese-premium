@@ -66,6 +66,7 @@ Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já exis
 
 * Pronto. O jogo está instalado.
 
+## Manual de Execução do jogo
 
 Para executar o jogo, siga os seguintes passos:
 
@@ -92,4 +93,4 @@ opcionais desta linha de produto. Troque o valor dessas variáveis para true ou 
 * Após limpar e construir o projeto pelo Netbeans, vá na pasta raiz do projeto e localize o arquivo lese.sqlite. 
 Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já existente dentro dessa pasta com o mesmo nome, subtitua-o;
 
-* Pronto. O seu novo produto já está configurado. Agora é só executá-lo.
+* Pronto. O seu novo produto já está configurado. Agora é seguir o manual de exeucução e executá-lo.
