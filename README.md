@@ -66,6 +66,7 @@ Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já exis
 
 * Pronto. O jogo está instalado.
 
+
 Para executar o jogo, siga os seguintes passos:
 
 * Abra o terminal do Linux ou o prompt comando do Windows e vá para a pasta dist dentro da pasta do projeto extraída 
