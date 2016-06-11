@@ -17,18 +17,22 @@ o conhecimento adquirido em sala de aula.
 - **Jogar;**
   - Single Player;
   - Multi Player (Opcional);
-* Jogar;
 - **Ranking (armazena as últimas pontuações);**
 
 ###Versão 2.0
-* Todas as features da versão 1.0;
-* Suporte a Autenticação;
-* Gerenciamento de perguntas pelo professor;
-* Gerenciamento de coringas pelo professor
+- **Todas as features da versão 1.0;**
+- **Suporte a Autenticação;**
+- **Gerenciamento de perguntas pelo professor;;**
+- **Gerenciamento de coringas pelo professor;**
 
 ##Requisitos Funcionais
 
 ###Versão 1.0
+- 1. **Jogar;**
+  - 1.1. Sortear Pergunta;
+  - Sortear Pergunta;
+  - Sortear Pergunta;
+  - Sortear Pergunta;
 1. Jogar
 1.1. Sortear Pergunta
 1.2. Exibir Resposta
