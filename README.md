@@ -28,8 +28,8 @@ o conhecimento adquirido em sala de aula.
 ##Requisitos Funcionais
 
 ###Versão 1.0
-- 1. **Jogar;**
-  - 1.1. Sortear Pergunta;
+1. **Jogar;**
+  1.1. Sortear Pergunta;
   - Sortear Pergunta;
   - Sortear Pergunta;
   - Sortear Pergunta;
