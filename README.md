@@ -14,10 +14,11 @@ o conhecimento adquirido em sala de aula.
 ##Features
 
 ###Versão 1.0
+- **Jogar;**
+  - Single Player;
+  - Multi Player (Opcional);
 * Jogar;
-* Single-player;
-* Multi-player (Opcional);
-* Ranking (armazena as últimas pontuações).
+- **Ranking (armazena as últimas pontuações);**
 
 ###Versão 2.0
 * Todas as features da versão 1.0;
