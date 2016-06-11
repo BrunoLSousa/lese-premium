@@ -21,9 +21,9 @@ import game.lese.question.JokerInfo;
 public class JokerHouse extends House {
     private JokerInfo joker;
     
-    public JokerHouse(int id, HouseOutcome outcome, DevelopmentPhase phase, JokerInfo j, int cycle) {
-        super(id, outcome, phase, cycle);
-        this.joker = j;
+    public JokerHouse(int id, DevelopmentPhase phase, int cycle) {
+        super(id, null, phase, cycle);
+        this.joker = null;
     }
     
     public JokerInfo getJoker() {
@@ -37,8 +37,7 @@ public class JokerHouse extends House {
     @Override
     protected void presentContent() {
         ContentTemplate contentTemplate = new ContentTemplate(getDevPhase());
-        House houseUpdated = contentTemplate.refreshJoker(this);
-        updateContent(houseUpdated);
+        contentTemplate.refreshJoker(this);
     }
 
     @Override
@@ -53,11 +52,5 @@ public class JokerHouse extends House {
     protected void applyOutcome(PlayerBoard p) {
         HouseOutcome outcome = getOutcome();
         outcome.apply(p, this);
-    }
-    
-    public void updateContent(House house){
-        JokerHouse j = (JokerHouse)house;
-        setOutcome(j.getOutcome());
-        setJoker(j.getJoker());
     }
 }

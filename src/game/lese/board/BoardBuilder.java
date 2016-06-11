@@ -76,7 +76,7 @@ public class BoardBuilder {
                 + "Mas fique tranquilo. No final tudo isso valerá apenas.\n\n"
                 + "Você acaba de ganhar 10 pontos pela sua contratação.";
 
-        HouseOutcome outcome = new BonusOutcome(1, 10, (float) 0.0);
+        HouseOutcome outcome = new BonusOutcome(1, 10);
         House initHouse = new InitialHouse(idHouse, outcome, null, message, cycle);
         this.board.addHouse(initHouse);
     }
@@ -85,7 +85,7 @@ public class BoardBuilder {
         String message = "Parabéns! \nVocê acaba de finalizar o ciclo "+cycle+" de desenvolvimento do software.\n\n"
                 + "Prepare-se, agora para o inicio do ciclo "+ (cycle+1) + ".";
 
-        HouseOutcome outcome = new BonusOutcome(2, 0, (float) 0.0);
+        HouseOutcome outcome = new BonusOutcome(2, 0);
         House intermediateHouse = new IntermediateHouse(idHouse, outcome, null, message, cycle);
         this.board.addHouse(intermediateHouse);
     }
@@ -94,27 +94,18 @@ public class BoardBuilder {
         String message = "Parabéns! \nVocê completou todos os ciclos de desenvolvimento do software.\n\n"
                 + "Fim do jogo.";
 
-        HouseOutcome outcome = new BonusOutcome(0, 0, (float) 0.0);
+        HouseOutcome outcome = new BonusOutcome(0, 0);
         House finalHouse = new FinalHouse(idHouse, outcome, null, message, cycle);
         this.board.addHouse(finalHouse);
     }
 
     private void buildQuestionHouse(DevelopmentPhase phase, int idHouse, int cycle) {
-        QuestionInfo q = new QuestionInfo("desc", "explanation");
-        q.addChoice("42", true);
-        for (int j = 0; j < 3; j++) {
-            q.addChoice(Integer.toString(j), false);
-        }
-
-        HouseOutcome outcome = new BonusOutcome(4, 5, (float) 1.0);
-        House questionHouse = new QuestionHouse(idHouse, outcome, phase, q, cycle);
+        House questionHouse = new QuestionHouse(idHouse, phase, cycle);
         this.board.addHouse(questionHouse);
     }
 
     private void buildJokerHouse(DevelopmentPhase phase, int idHouse, int cycle) {
-        JokerInfo j = new JokerInfo("title", "explanation");
-        HouseOutcome outcome = new BonusOutcome(4, 3, (float) 1.0);
-        House jokerHouse = new JokerHouse(idHouse, outcome, phase, j, cycle);
+        House jokerHouse = new JokerHouse(idHouse, phase, cycle);
         this.board.addHouse(jokerHouse);
     }
 

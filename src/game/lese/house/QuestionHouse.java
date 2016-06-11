@@ -24,9 +24,9 @@ public class QuestionHouse extends House {
     private QuestionInfo question;
     private boolean correct;
 
-    public QuestionHouse(int id, HouseOutcome outcome, DevelopmentPhase phase, QuestionInfo q, int cycle) {
-        super(id, outcome, phase, cycle);
-        this.question = q;
+    public QuestionHouse(int id, DevelopmentPhase phase, int cycle) {
+        super(id, null, phase, cycle);
+        this.question = null;
         this.correct = false;
     }
 
@@ -41,8 +41,7 @@ public class QuestionHouse extends House {
     @Override
     protected void presentContent() {
         ContentTemplate contentTemplate = new ContentTemplate(getDevPhase());
-        House houseUpdated = contentTemplate.refreshQuestion(this);
-        updateContent(houseUpdated);
+        contentTemplate.refreshQuestion(this);
     }
 
     @Override
@@ -67,11 +66,5 @@ public class QuestionHouse extends House {
 
     public boolean isCorrect() {
         return this.correct;
-    }
-    
-    public void updateContent(House house){
-        QuestionHouse q = (QuestionHouse)house;
-        setOutcome(q.getOutcome());
-        setQuestion(q.getQuestion());
     }
 }

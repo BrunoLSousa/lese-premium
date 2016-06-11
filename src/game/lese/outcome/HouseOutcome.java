@@ -16,13 +16,9 @@ public abstract class HouseOutcome {
     private int points;
     private int nHouses;
     
-    protected HouseOutcome(int points, int nHouses, float extraPenality) {
+    protected HouseOutcome(int nHouses, int points) {
         this.points = points;
         this.nHouses = nHouses;
-    }
-        
-    protected HouseOutcome(int points, int nHouses) {
-        this(points, nHouses, 1);
     }
         
     public int getPoints() {

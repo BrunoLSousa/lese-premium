@@ -36,28 +36,28 @@ public class ContentTemplate {
         phase = new PhaseDAO().selectPhasePerName(devPhase.toString());
     }
     
-    public House refreshQuestion(House house){
+    public void refreshQuestion(QuestionHouse house){
         Question q = draftQuestion();
-        HouseOutcome outcome = new BonusOutcome(q.getHouse(), q.getScore(), (float) 0.0);
+        HouseOutcome outcome = new BonusOutcome(q.getHouse(), q.getScore());
         QuestionInfo questionBoard = new QuestionInfo(q.getDescription(), q.getExplanation());
         for(Answer answer : q.getAnswer()){
             questionBoard.addChoice(answer.getDescription(), (answer.getStatus().equals("1")));
         }
-        QuestionHouse questionUpdated = new QuestionHouse(house.getId(), outcome, house.getDevPhase(), questionBoard, house.getCycle());
-        return questionUpdated;
+        house.setOutcome(outcome);
+        house.setQuestion(questionBoard);
     }
     
-    public House refreshJoker(House house){
+    public void refreshJoker(JokerHouse jHouse){
         Joker j = draftJoker();
         HouseOutcome outcome;
         if(j.getAction().equals("1")){
-            outcome = new BonusOutcome(1, j.getScore(), (float) 0.0);
+            outcome = new BonusOutcome(1, j.getScore());
         }else{
             outcome = new PenalityOutcome(1, j.getScore());
         }
         JokerInfo jokerBoard = new JokerInfo(j.getTitle(), j.getDescription());
-        JokerHouse jokerUpdated = new JokerHouse(house.getId(), outcome, house.getDevPhase(), jokerBoard, house.getCycle());
-        return jokerUpdated;
+        jHouse.setOutcome(outcome);
+        jHouse.setJoker(jokerBoard);
     }
     
     private Question draftQuestion() {

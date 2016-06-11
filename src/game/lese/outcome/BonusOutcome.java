@@ -16,12 +16,8 @@ import game.lese.house.QuestionHouse;
  */
 public class BonusOutcome extends HouseOutcome {
 
-    public BonusOutcome(int nHouses, int points, float extraPenality) {
-        super(points, nHouses, extraPenality);
-    }
-
     public BonusOutcome(int nHouses, int points) {
-        super(points, nHouses, 1);
+        super(nHouses, points);
     }
 
     @Override

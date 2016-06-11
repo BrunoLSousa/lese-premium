@@ -15,7 +15,7 @@ import game.lese.house.House;
 public class PenalityOutcome extends HouseOutcome {
 
     public PenalityOutcome(int nHouses, int points) {
-        super(points, nHouses, 1);
+        super(nHouses, points);
     }
 
     @Override
