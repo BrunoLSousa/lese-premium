@@ -53,31 +53,42 @@ Documentação do projeto (interna): [https://drive.google.com/drive/u/0/folders
 
 Para fazer a instalação do jogo, siga os seguintes passos:
 
-* Faça download do projeto compactado no link: https://github.com/thesir11/lese-premium.git
+* Faça download do projeto compactado no link: https://github.com/thesir11/lese-premium.git ;
 
-* Faça a extração do arquivo compactado em sua máquina.
+* Faça a extração do arquivo compactado em sua máquina;
 
-* Abra o projeto no netbeans.
+* Abra o projeto no programa Netbeans 8.0.2 com a jdk 1.7;
 
-* Limpe-o e construa para que seje gerado uma pasta chamada dist dentro da pasta do projeto.
+* Limpe-o e construa para que seje gerado uma pasta chamada dist dentro da pasta do projeto;
 
 * Após limpar e construir o projeto pelo Netbeans, vá na pasta raiz do projeto e localize o arquivo lese.sqlite. 
-Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já existente dentro dessa pasta com o mesmo nome, subtitua-o.
+Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já existente dentro dessa pasta com o mesmo nome, subtitua-o;
 
 * Pronto. O jogo está instalado.
 
-Para executar o jogo, siga os seguintes passos.
+Para executar o jogo, siga os seguintes passos:
 
-* Abra o terminal do Linux ou o prompt comando do Windows e vá para a pasta dist dentro da pasta do projeto extraída utilizando o comando cd (digite: cd "nome_do_diretorio" e pressione enter).
+* Abra o terminal do Linux ou o prompt comando do Windows e vá para a pasta dist dentro da pasta do projeto extraída 
+utilizando o comando cd (digite: cd "nome_do_diretorio" e pressione enter);
 
-* Execute o comando java -jar lesepremium.jar
+* Execute o seguinte comando: java -jar lesepremium.jar 
 
 * Pronto. Jogo executado.
 
 ## Manual de Configuração dos produtos
 
+Para a configuração dos produtos, siga os seguintes passos:
 
-O objetivo de do jogo é o entendimento do processo de desenvolvimento iterativo e incremental através da aplicação dos 
-conceitos existentes na engenharia de software, por meio de perguntas e situações que acontecem durante o jogo. 
-A finalidade principal do jogo é criar uma estratégia complementar de ensino, onde os alunos deverão colocar em prática 
-o conhecimento adquirido em sala de aula.
+* Abra o projeto no programa Netbeans 8.0.2 com a jdk 1.7;
+
+* Localize e abra no próprio Netbeans o arquivo DynamicAnnotation.java, localizado dentro do pacote game.lese.main;
+
+* Neste arquivo existem duas variáveis nomeadas como: PROJECT_MANAGMENT e MULTIPLAYER. Essas variável controlam as features
+opcionais desta linha de produto. Troque o valor dessas variáveis para true ou false para configurar um produto diferente.
+
+*Após trocar os valores dessas variáveis salve as alterações no arquivos e limpa e construa o projeto para que seja compilado o seu produto.
+
+* Após limpar e construir o projeto pelo Netbeans, vá na pasta raiz do projeto e localize o arquivo lese.sqlite. 
+Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já existente dentro dessa pasta com o mesmo nome, subtitua-o;
+
+* Pronto. O seu novo produto já está configurado. Agora é só executá-lo.
