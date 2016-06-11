@@ -14,38 +14,32 @@ o conhecimento adquirido em sala de aula.
 ##Features
 
 ###Versão 1.0
-* Single-player;
-* Tabuleiro estático;  
-* Divisão do tabuleiro de acordo com as disciplinas do processo de desenvolvimento iterativo e incremental: 
-  Levantamento de requisitos, Análise dos requisitos, Projeto, Implementação, Testes e Implantação.
-* O tabuleiro contêm 36 casas (6 por fase), sendo, 20 casas de perguntas e 16 casas coringa;
-* Sistemas de pontos;
+* Jogar;
+** Single-player;
+** Multi-player (Opcional);
 * Ranking (armazena as últimas pontuações).
 
 ###Versão 2.0
 * Todas as features da versão 1.0;
-* Possui mais de um tabuleiro, que é gerado aleatoriamente quando o aluno clica em “tabuleiro surpresa”;
-* Login e senha;
+* Suporte a Autenticação;
 * Gerenciamento de perguntas pelo professor;
 * Gerenciamento de coringas pelo professor
 
 ##Requisitos Funcionais
 
 ###Versão 1.0
-1. Iniciar Jogo
-2. Jogar Dado
-3. Responder Pergunta
-4. Sortear Pergunta
-5. Exibir Resposta
-6. Exibir Coringa
-7. Exibir Pontuação
-8. Consultar Ranking
-9. Terminar Jogo
+1. Jogar
+1.1. Sortear Pergunta
+1.2. Exibir Resposta
+1.3. Exibir Coringa
+1.4. Exibir Pontuação
+2. Consultar Ranking
+3. Sair do Jogo
 
 ###Versão 2.0
-10. Sortear Tabuleiro
-11. Gerenciar perguntas
-12. Gerenciar coringas
+4. Autenticar
+5. Gerenciar perguntas
+6. Gerenciar coringas
 
 ##Links
 
