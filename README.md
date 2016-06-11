@@ -15,8 +15,8 @@ o conhecimento adquirido em sala de aula.
 
 ###Versão 1.0
 * Jogar;
-** Single-player;
-** Multi-player (Opcional);
+* Single-player;
+* Multi-player (Opcional);
 * Ranking (armazena as últimas pontuações).
 
 ###Versão 2.0
