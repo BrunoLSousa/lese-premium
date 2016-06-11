@@ -48,3 +48,11 @@ Documentação do projeto (interna): [https://drive.google.com/drive/u/0/folders
 ## Senha padrão de administrador
 + Email: teste@teste.com
 + Senha: 123456
+
+## Manual de Instalação
+
+O jogo necessita 
+O objetivo de do jogo é o entendimento do processo de desenvolvimento iterativo e incremental através da aplicação dos 
+conceitos existentes na engenharia de software, por meio de perguntas e situações que acontecem durante o jogo. 
+A finalidade principal do jogo é criar uma estratégia complementar de ensino, onde os alunos deverão colocar em prática 
+o conhecimento adquirido em sala de aula.
