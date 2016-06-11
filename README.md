@@ -51,7 +51,26 @@ Documentação do projeto (interna): [https://drive.google.com/drive/u/0/folders
 
 ## Manual de Instalação
 
-O jogo necessita 
+# Faça download do projeto compactado no link: https://github.com/thesir11/lese-premium.git
+
+# Faça a extração do arquivo compactado em sua máquina.
+
+# Abra o projeto no netbeans.
+
+# Limpe-o e construa para que seje gerado uma pasta chamada dist dentro da pasta do projeto.
+
+# Após limpar e construir o projeto pelo Netbeans, vá na pasta raiz do projeto e localize o arquivo lese.sqlite. 
+Copie e cole esse arquivo dentro da pasta dist. Se houver algum arquivo já existente dentro dessa pasta com o mesmo nome, subtitua-o.
+
+# Abra o terminal do Linux ou o prompt comando do Windows e vá para a pasta dist dentro da pasta do projeto extraída utilizando o comando cd (digite: cd "nome_do_diretorio" e pressione enter).
+
+# Execute o comando java -jar lesepremium.jar
+
+# Pronto. Jogo executado.
+
+## Manual de Configuração dos produtos
+
+
 O objetivo de do jogo é o entendimento do processo de desenvolvimento iterativo e incremental através da aplicação dos 
 conceitos existentes na engenharia de software, por meio de perguntas e situações que acontecem durante o jogo. 
 A finalidade principal do jogo é criar uma estratégia complementar de ensino, onde os alunos deverão colocar em prática 
