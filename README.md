@@ -28,23 +28,18 @@ o conhecimento adquirido em sala de aula.
 ##Requisitos Funcionais
 
 ###Versão 1.0
-1. **Jogar;**
-  1.1. Sortear Pergunta;
-  - Sortear Pergunta;
-  - Sortear Pergunta;
-  - Sortear Pergunta;
-1. Jogar
-1.1. Sortear Pergunta
-1.2. Exibir Resposta
-1.3. Exibir Coringa
-1.4. Exibir Pontuação
-2. Consultar Ranking
-3. Sair do Jogo
+- 1. **Jogar;**
+  - 1.1. Sortear Pergunta;
+  - 1.2. Exibir Resposta;
+  - 1.3. Exibir Coringa;
+  - 1.4. Exibir Pontuação;
+- 2. **Consultar Ranking;**
+- 3. **Sair do Jogo;**
 
 ###Versão 2.0
-4. Autenticar
-5. Gerenciar perguntas
-6. Gerenciar coringas
+- 4. **Autenticar;**
+- 5. **Gerenciar perguntas;**
+- 6. **Gerenciar coringas;**
 
 ##Links
 
